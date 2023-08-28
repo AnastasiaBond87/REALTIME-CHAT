@@ -8,7 +8,7 @@
     "playwright.config.*",
     "./src/**/*.ts",
     "./src/**/*.vue"
-  ],
+, "global.d.ts", "global.d.ts"  ],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",

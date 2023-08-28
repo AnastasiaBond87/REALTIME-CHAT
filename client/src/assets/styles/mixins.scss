@@ -1,0 +1,19 @@
+@mixin sizes {
+  padding-left: 1.14rem;
+  padding-right: 1.14rem;
+
+  &.small {
+    padding-top: 0.42rem;
+    padding-bottom: 0.42rem;
+  }
+
+  &.medium {
+    padding-top: 0.71rem;
+    padding-bottom: 0.71rem;
+  }
+
+  &.large {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
