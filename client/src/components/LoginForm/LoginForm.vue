@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import BaseButton from '@/ui/BaseButton/BaseButton.vue';
 import BaseInput from '@/ui/BaseInput/BaseInput.vue';
+import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+
+const router = useRouter();
 
 const inputVal = ref('');
 
-const handleSubmit = () => {
-  console.log(inputVal.value);
+const handleSubmit = (): void => {
+  router.push({ name: 'Chat' });
+  localStorage.setItem('name', inputVal.value);
 };
 </script>
 
@@ -19,6 +23,7 @@ const handleSubmit = () => {
         class="login-form__input"
         placeholder="Enter name..."
         v-model="inputVal"
+        size="md"
       />
       <base-button type="submit" class="login-form__btn" size="md">Enter</base-button>
     </div>
