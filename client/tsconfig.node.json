@@ -7,13 +7,18 @@
     "nightwatch.conf.*",
     "playwright.config.*",
     "./src/**/*.ts",
-    "./src/**/*.vue"
-, "global.d.ts", "global.d.ts"  ],
+    "./src/**/*.vue", 
+    "src/vue.d.tsd.ts" ],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",
+    "allowJs": false,
+    "noImplicitAny": true,
     "types": ["node"],
-    "lib": ["DOM", "DOM.Iterable"]
+    "lib": ["DOM", "DOM.Iterable"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }

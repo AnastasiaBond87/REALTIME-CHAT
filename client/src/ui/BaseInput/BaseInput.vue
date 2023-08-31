@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { InputHTMLAttributes, PropType, computed } from 'vue';
-
-type TInputSize = 'sm' | 'md' | 'lg';
+import type { ErrorObject } from '@vuelidate/core';
+import type { TSize } from '@/types/common.types';
 
 const props = defineProps({
   type: {
@@ -9,7 +9,7 @@ const props = defineProps({
     default: 'text',
   },
   size: {
-    type: String as PropType<TInputSize>,
+    type: String as PropType<TSize>,
   },
   placeholder: {
     type: String,
@@ -17,6 +17,9 @@ const props = defineProps({
   modelValue: {
     type: String,
     required: true,
+  },
+  errors: {
+    type: Array as PropType<ErrorObject[]>,
   },
 });
 
@@ -38,17 +41,28 @@ const handleChange = (event: Event) => {
 </script>
 
 <template>
-  <input
-    :type="props.type"
-    class="input"
-    :class="inputClassList"
-    :placeholder="props.placeholder"
-    @input="handleChange"
-    :value="modelValue"
-  />
+  <div class="wrapper">
+    <input
+      :type="props.type"
+      class="input"
+      :class="inputClassList"
+      :placeholder="props.placeholder"
+      @input="handleChange"
+      :value="modelValue"
+    />
+    <p v-if="errors && errors.length > 0" class="error">
+      <span v-for="{ $message, $uid } in errors" :key="$uid">{{ $message }}</span>
+    </p>
+    <slot></slot>
+  </div>
 </template>
 
 <style lang="scss" scoped>
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 .input {
   outline: none;
   border-radius: 0.2rem;
@@ -56,6 +70,8 @@ const handleChange = (event: Event) => {
   border-width: 1px;
   border-color: $color-secondary;
   transition: all ease-in-out 0.2s;
+  min-width: 100%;
+  box-sizing: border-box;
 
   &::placeholder {
     font-weight: 300;
@@ -67,5 +83,16 @@ const handleChange = (event: Event) => {
   }
 
   @include sizes;
+}
+
+.error {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  margin-top: 0.3rem;
+  padding: 0 0.3rem;
+  color: $text-color-error;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 </style>

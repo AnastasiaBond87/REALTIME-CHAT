@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ButtonHTMLAttributes, PropType, computed } from 'vue';
-
-type TButtonSize = 'sm' | 'md' | 'lg';
+import type { TSize } from '@/types/common.types';
 
 const props = defineProps({
   type: {
@@ -9,7 +8,7 @@ const props = defineProps({
     default: 'button',
   },
   size: {
-    type: String as PropType<TButtonSize>,
+    type: String as PropType<TSize>,
     default: 'md',
   },
   disabled: {
@@ -35,22 +34,19 @@ const btnClassList = computed(() => ({
 .btn {
   border: none;
   border-radius: 0.2rem;
-  background: $color-primary;
-  color: $text-color-primary;
   line-height: 1.14rem;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
   transition: all ease-in-out 0.3s;
+  color: $text-color-primary;
 
   &:not(:disabled):hover {
-    background: $color-hover;
     box-shadow: $shadow-primary;
   }
 
   &:not(:disabled):active {
-    background: $color-active;
     box-shadow: $shadow-primary;
   }
 
