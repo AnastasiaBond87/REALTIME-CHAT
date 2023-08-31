@@ -3,12 +3,12 @@ import BaseButton from '@/ui/BaseButton/BaseButton.vue';
 import BaseInput from '@/ui/BaseInput/BaseInput.vue';
 import ShowPasswordButton from '@/components/ShowPasswordButton/ShowPasswordButton.vue';
 import { useVuelidate } from '@vuelidate/core';
-import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators';
+import { required, email, minLength, sameAs, helpers, maxLength } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
 import { reactive, computed, ref, PropType, watch } from 'vue';
 import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
-import { initialState, passwordPattern, customMessages } from '@/constants/form';
+import { initialState, customMessages } from '@/constants/form';
 import { login, registration } from '@/api/userApi';
 
 const props = defineProps({
@@ -25,32 +25,35 @@ const formState: IFormFields = reactive({ ...initialState });
 
 const passwordType = computed(() => (isPasswordVisible.value ? 'text' : 'password'));
 
+const passwordPattern = (value: string) =>
+  /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,15}/.test(value);
+
+const { userName, userEmail, userPassword, confirmPassword } = customMessages;
+
 const validators = computed(() => {
   if (props.formView === 'SignIn') {
     return {
-      email: { required: helpers.withMessage(customMessages.emailRequired, required) },
-      password: { required: helpers.withMessage(customMessages.passwordRequired, required) },
+      email: { required: helpers.withMessage(userEmail.required, required) },
+      password: { required: helpers.withMessage(userPassword.required, required) },
     };
   } else {
     return {
       name: {
-        required: helpers.withMessage(customMessages.nameRequired, required),
-        minLength: helpers.withMessage(customMessages.nameLength, minLength(3)),
+        required: helpers.withMessage(userName.required, required),
+        minLength: helpers.withMessage(userName.minLength, minLength(3)),
+        maxLength: helpers.withMessage(userName.maxLength, maxLength(10)),
       },
       email: {
-        required: helpers.withMessage(customMessages.emailRequired, required),
-        email: helpers.withMessage(customMessages.emailPattern, email),
+        required: helpers.withMessage(userEmail.required, required),
+        email: helpers.withMessage(userEmail.pattern, email),
       },
       password: {
-        required: helpers.withMessage(customMessages.passwordRequired, required),
-        pattern: helpers.withMessage(customMessages.passwordPattern, passwordPattern),
+        required: helpers.withMessage(userPassword.required, required),
+        pattern: helpers.withMessage(userPassword.pattern, passwordPattern),
       },
       confirmPassword: {
-        required: helpers.withMessage(customMessages.confirmPasswordRequired, required),
-        sameAs: helpers.withMessage(
-          customMessages.confirmPasswordMatch,
-          sameAs(formState.password)
-        ),
+        required: helpers.withMessage(confirmPassword.required, required),
+        sameAs: helpers.withMessage(confirmPassword.match, sameAs(formState.password)),
       },
     };
   }
