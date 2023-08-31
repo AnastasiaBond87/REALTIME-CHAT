@@ -3,19 +3,13 @@ import BaseButton from '@/ui/BaseButton/BaseButton.vue';
 import BaseInput from '@/ui/BaseInput/BaseInput.vue';
 import ShowPasswordButton from '@/components/ShowPasswordButton/ShowPasswordButton.vue';
 import { useVuelidate } from '@vuelidate/core';
-import { required, email, minLength, sameAs } from '@vuelidate/validators';
+import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
-import { reactive, computed, ref, PropType, watch, VNodeRef } from 'vue';
+import { reactive, computed, ref, PropType, watch } from 'vue';
 import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
-import { registration } from '@/api/userApi';
-
-const initialState: IFormFields = {
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
+import { initialState, passwordPattern, customMessages } from '@/constants/form';
+import { login, registration } from '@/api/userApi';
 
 const props = defineProps({
   formView: {
@@ -27,7 +21,6 @@ const props = defineProps({
 const router = useRouter();
 
 const isPasswordVisible = ref(false);
-const form = ref<VNodeRef>();
 const formState: IFormFields = reactive({ ...initialState });
 
 const passwordType = computed(() => (isPasswordVisible.value ? 'text' : 'password'));
@@ -35,15 +28,30 @@ const passwordType = computed(() => (isPasswordVisible.value ? 'text' : 'passwor
 const validators = computed(() => {
   if (props.formView === 'SignIn') {
     return {
-      email: { required },
-      password: { required },
+      email: { required: helpers.withMessage(customMessages.emailRequired, required) },
+      password: { required: helpers.withMessage(customMessages.passwordRequired, required) },
     };
   } else {
     return {
-      name: { required, minLength: minLength(3) },
-      email: { required, email },
-      password: { required },
-      confirmPassword: { required, sameAs: sameAs(formState.password) },
+      name: {
+        required: helpers.withMessage(customMessages.nameRequired, required),
+        minLength: helpers.withMessage(customMessages.nameLength, minLength(3)),
+      },
+      email: {
+        required: helpers.withMessage(customMessages.emailRequired, required),
+        email: helpers.withMessage(customMessages.emailPattern, email),
+      },
+      password: {
+        required: helpers.withMessage(customMessages.passwordRequired, required),
+        pattern: helpers.withMessage(customMessages.passwordPattern, passwordPattern),
+      },
+      confirmPassword: {
+        required: helpers.withMessage(customMessages.confirmPasswordRequired, required),
+        sameAs: helpers.withMessage(
+          customMessages.confirmPasswordMatch,
+          sameAs(formState.password)
+        ),
+      },
     };
   }
 });
@@ -63,6 +71,8 @@ const handleSubmit = async (): Promise<void> => {
 
       if (props.formView === 'SignUp') {
         await registration({ name, email, password });
+      } else {
+        await login({ email, password });
       }
 
       v$.value.$reset();
@@ -90,7 +100,7 @@ watch(
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="form" ref="form">
+  <form @submit.prevent="handleSubmit" class="form">
     <h2 class="form__title">{{ formView === 'SignIn' ? 'Sign in' : 'Sign up' }} messenger</h2>
     <div class="form__content">
       <base-input
@@ -101,6 +111,7 @@ watch(
         size="md"
         v-model.trim="v$.name.$model"
         :errors="v$.name.$errors"
+        autocomplete="username"
       />
       <base-input
         type="text"
@@ -109,6 +120,7 @@ watch(
         v-model.trim="v$.email.$model"
         size="md"
         :errors="v$.email.$errors"
+        autocomplete="email"
       />
       <base-input
         :type="passwordType"
@@ -117,6 +129,7 @@ watch(
         v-model.trim="v$.password.$model"
         :errors="v$.password.$errors"
         size="md"
+        autocomplete="new-password"
       >
         <show-password-button
           class="form__password-btn"
@@ -132,6 +145,7 @@ watch(
         size="md"
         v-model="v$.confirmPassword.$model"
         :errors="v$.confirmPassword.$errors"
+        autocomplete="new-password"
       >
         <show-password-button
           class="form__password-btn"

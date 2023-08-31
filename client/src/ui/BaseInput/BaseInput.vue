@@ -21,6 +21,10 @@ const props = defineProps({
   errors: {
     type: Array as PropType<ErrorObject[]>,
   },
+  autocomplete: {
+    type: String as PropType<InputHTMLAttributes['autocomplete']>,
+    required: true,
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -49,6 +53,7 @@ const handleChange = (event: Event) => {
       :placeholder="props.placeholder"
       @input="handleChange"
       :value="modelValue"
+      :autocomplete="autocomplete"
     />
     <p v-if="errors && errors.length > 0" class="error">
       <span v-for="{ $message, $uid } in errors" :key="$uid">{{ $message }}</span>
