@@ -5,9 +5,9 @@ import { createPinia } from 'pinia';
 import App from '@/App.vue';
 import router from '@/router';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { BiEyeFill, BiEyeSlashFill } from 'oh-vue-icons/icons';
+import Icons from '@/ui/Icons';
 
-addIcons(BiEyeFill, BiEyeSlashFill);
+addIcons(...Icons);
 
 const pinia = createPinia();
 const app = createApp(App);

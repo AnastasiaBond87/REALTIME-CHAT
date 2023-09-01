@@ -84,7 +84,7 @@ const handleChange = (event: Event) => {
   }
 
   &:focus {
-    border-color: $color-primary;
+    border-color: $color-active;
   }
 
   @include sizes;

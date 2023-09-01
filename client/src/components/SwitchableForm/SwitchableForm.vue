@@ -96,7 +96,11 @@ watch(
 
 <template>
   <form @submit.prevent="handleSubmit" class="form">
-    <h2 class="form__title">{{ formView === 'SignIn' ? 'Sign in' : 'Sign up' }} messenger</h2>
+    <h2 class="form__title">
+      <v-icon name="ri-user-add-fill" scale="1.2" v-if="formView === 'SignUp'" />
+      <v-icon name="ri-user-shared-fill" scale="1.2" v-else />
+      <span>{{ formView === 'SignIn' ? 'Sign in' : 'Sign up' }} messenger</span>
+    </h2>
     <div class="form__content">
       <base-input
         v-if="formView === 'SignUp' && v$.name"
@@ -174,6 +178,11 @@ watch(
     font-weight: 600;
     text-transform: capitalize;
     align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    // color: darken($text-color-secondary, 25%);
+    color: $color-active;
   }
 
   &__content {
@@ -188,6 +197,7 @@ watch(
     right: 1.14rem;
     transform: translateY(25%);
     cursor: pointer;
+    color: darken($text-color-secondary, 10%);
   }
 
   &__btns {
