@@ -4,12 +4,10 @@ import BaseInput from '@/ui/BaseInput/BaseInput.vue';
 import ShowPasswordButton from '@/components/ShowPasswordButton/ShowPasswordButton.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, sameAs, helpers, maxLength } from '@vuelidate/validators';
-import { useRouter } from 'vue-router';
 import { reactive, computed, ref, PropType, watch } from 'vue';
 import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
 import { initialState, customMessages } from '@/constants/form';
-import UserApi from '@/api/UserApi';
 import { useAuthStore } from '@/stores/auth';
 
 const props = defineProps({
@@ -19,7 +17,6 @@ const props = defineProps({
   },
 });
 
-const router = useRouter();
 const { login, registration } = useAuthStore();
 
 const isPasswordVisible = ref(false);
@@ -71,16 +68,12 @@ const handleSubmit = async (): Promise<void> => {
   v$.value.$validate();
 
   if (!v$.value.$error) {
-    try {
-      const { name, email, password } = formState;
+    const { name, email, password } = formState;
 
-      if (props.formView === 'SignUp') {
-        await registration({ name, email, password });
-      } else {
-        await login({ email, password });
-      }
-    } catch (err) {
-      console.log(err);
+    if (props.formView === 'SignUp') {
+      await registration({ name, email, password });
+    } else {
+      await login({ email, password });
     }
   }
 };
