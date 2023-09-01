@@ -1,17 +1,16 @@
-interface IError {
+import type { IUser } from '@/types/common.types';
+
+interface IErrorResponse {
   error: boolean;
   message: string;
 }
 
-interface IUser {
-  _id: string;
-  name: string;
-  email: string;
-  password: string;
-  createdAt: string;
-  updatedAt: string;
+type TLoginRequest = Pick<IUser, 'email' | 'password'>;
+
+type TRegistrationRequest = TLoginRequest & Pick<IUser, 'name'>;
+
+interface IUserResponse extends IUser {
+  accessToken: string;
 }
 
-type TUserApi<T> = (args: T) => Promise<IUser | void>;
-
-export type { IError, IUser, TUserApi };
+export type { IErrorResponse, TLoginRequest, TRegistrationRequest, IUserResponse };

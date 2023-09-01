@@ -9,7 +9,8 @@ import { reactive, computed, ref, PropType, watch } from 'vue';
 import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
 import { initialState, customMessages } from '@/constants/form';
-import { login, registration } from '@/api/userApi';
+import UserApi from '@/api/UserApi';
+import { useAuthStore } from '@/stores/auth';
 
 const props = defineProps({
   formView: {
@@ -19,6 +20,7 @@ const props = defineProps({
 });
 
 const router = useRouter();
+const { login, registration } = useAuthStore();
 
 const isPasswordVisible = ref(false);
 const formState: IFormFields = reactive({ ...initialState });
@@ -77,9 +79,6 @@ const handleSubmit = async (): Promise<void> => {
       } else {
         await login({ email, password });
       }
-
-      v$.value.$reset();
-      router.push({ name: 'Chat' });
     } catch (err) {
       console.log(err);
     }
