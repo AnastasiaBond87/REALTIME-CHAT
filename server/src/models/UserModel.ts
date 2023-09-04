@@ -4,16 +4,16 @@ import type { IUser } from '../types/index.js';
 const userSchema = new Schema<IUser>(
   {
     name: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
     },
     email: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
       unique: true,
     },
     password: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
     },
   },

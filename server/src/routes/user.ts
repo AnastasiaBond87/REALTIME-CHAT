@@ -4,7 +4,7 @@ import UserController from '../controllers/UserController.js';
 const router = Router();
 
 router.post('/registration', UserController.registration);
-router.post('/login', () => {});
+router.post('/login', UserController.login);
 router.post('/logout', () => {});
 
 export { router };
