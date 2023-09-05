@@ -24,9 +24,19 @@ const initialState: State = {
 };
 
 const useAuthStore = defineStore('auth', {
-  state: (): State => initialState,
+  state: (): State => {
+    return { ...initialState };
+  },
+  getters: {
+    getAccessToken(): string | undefined {
+      if (this.user) {
+        const { accessToken } = this.user;
+        return accessToken;
+      }
+    },
+  },
   actions: {
-    handleError(error: unknown): void {
+    responseError(error: unknown): void {
       const { response } = error as AxiosError<IErrorResponse>;
 
       if (response) {
@@ -35,28 +45,51 @@ const useAuthStore = defineStore('auth', {
         this.error = 'UNKNOWN_ERROR';
       }
     },
-    async registration({ name, email, password }: TRegistrationRequest): Promise<void> {
+    authSuccess(user: IUserResponse): void {
+      this.isAuth = true;
+      this.user = user;
+      router.push({ name: 'Chat' });
+    },
+    setLoading() {
       this.isLoading = true;
       this.error = '';
+    },
+    async registration({ name, email, password }: TRegistrationRequest): Promise<void> {
+      this.setLoading();
+
       try {
-        await UserApi.registration({ name, email, password });
-        this.isAuth = true;
-        router.push({ name: 'Chat' });
+        const user = await UserApi.registration({ name, email, password });
+        this.authSuccess(user);
       } catch (err) {
-        this.handleError(err);
+        this.responseError(err);
       } finally {
         this.isLoading = false;
       }
     },
     async login({ email, password }: TLoginRequest): Promise<void> {
-      this.isLoading = true;
-      this.error = '';
+      this.setLoading();
+
       try {
-        await UserApi.login({ email, password });
-        this.isAuth = true;
-        router.push({ name: 'Chat' });
+        const user = await UserApi.login({ email, password });
+        localStorage.setItem('GVGT8_accessToken', user.accessToken);
+        this.authSuccess(user);
       } catch (err) {
-        this.handleError(err);
+        this.responseError(err);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async logout() {
+      this.setLoading();
+
+      try {
+        if (this.user) {
+          await UserApi.logout();
+          this.$reset();
+          router.push({ name: 'Home' });
+        }
+      } catch (err) {
+        this.responseError(err);
       } finally {
         this.isLoading = false;
       }

@@ -1,5 +1,10 @@
 import { Endpoints } from '@/constants/url';
-import type { IUserResponse, TRegistrationRequest, TLoginRequest } from '@/types/api.types';
+import type {
+  IUserResponse,
+  TRegistrationRequest,
+  TLoginRequest,
+  IDeleteResponse,
+} from '@/types/api.types';
 import axiosInstance from '@/api/instance';
 
 class UserApi {
@@ -13,8 +18,14 @@ class UserApi {
     return data;
   }
 
-  static async login({ email, password }: TLoginRequest): Promise<IUserResponse | void> {
+  static async login({ email, password }: TLoginRequest): Promise<IUserResponse> {
     const res = await axiosInstance.post(Endpoints.login, { password, email });
+    const { data } = res;
+    return data;
+  }
+
+  static async logout(): Promise<IDeleteResponse> {
+    const res = await axiosInstance.post(Endpoints.logout);
     const { data } = res;
     return data;
   }

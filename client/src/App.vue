@@ -4,12 +4,14 @@ import AppFooter from '@/components/AppFooter/AppFooter.vue';
 import AppHeader from '@/components/AppHeader/AppHeader.vue';
 import { useThemeStore } from '@/stores/theme';
 import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
 
-const { theme } = useThemeStore();
+const themeStore = useThemeStore();
+const { theme } = storeToRefs(themeStore);
 
 const layoutClassList = computed(() => ({
-  light: theme === 'light',
-  dark: theme === 'dark',
+  light: theme.value === 'light',
+  dark: theme.value === 'dark',
 }));
 </script>
 
@@ -24,7 +26,7 @@ const layoutClassList = computed(() => ({
 <style lang="scss">
 .app-layout {
   min-width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 

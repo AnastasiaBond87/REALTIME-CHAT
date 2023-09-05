@@ -15,8 +15,5 @@
     margin: 0;
     padding: 0;
   }
-
-  &__user-item {
-  }
 }
 </style>

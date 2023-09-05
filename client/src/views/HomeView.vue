@@ -14,14 +14,18 @@ const switchForm = (): void => {
 
 <template>
   <main class="main">
-    <switchable-form :form-view="formView" />
-    <div class="main__footer">
-      <span>{{
-        formView === 'SignIn' ? `Don't have an account yet?` : 'Already have an account?'
-      }}</span>
-      <text-button @click="switchForm" @keydown.prevent>{{
-        formView === 'SignIn' ? Buttons.SignUp : Buttons.SignIn
-      }}</text-button>
+    <div class="container">
+      <div class="main__wrapper">
+        <switchable-form :form-view="formView" />
+        <div class="main__footer">
+          <span>{{
+            formView === 'SignIn' ? `Don't have an account yet?` : 'Already have an account?'
+          }}</span>
+          <text-button @click="switchForm" @keydown.prevent>{{
+            formView === 'SignIn' ? Buttons.SignUp : Buttons.SignIn
+          }}</text-button>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -31,9 +35,16 @@ const switchForm = (): void => {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 2rem;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 2rem 0;
+  }
 
   &__footer {
     display: flex;

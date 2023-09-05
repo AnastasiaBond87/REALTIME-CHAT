@@ -82,14 +82,13 @@ const handleReset = (): void => {
   for (let key in formState) {
     formState[key as keyof IFormFields] = initialState[key as keyof IFormFields];
   }
-
   v$.value.$reset();
 };
 
 watch(
   () => props.formView,
   () => {
-    v$.value.$reset();
+    handleReset();
   }
 );
 </script>
@@ -154,12 +153,13 @@ watch(
       </base-input>
     </div>
     <div class="form__btns">
-      <base-button type="submit" class="form__btn form__btn_submit" size="md">{{
-        Buttons[formView]
-      }}</base-button>
-      <base-button class="form__btn form__btn_reset" size="md" @click="handleReset">{{
-        Buttons.Reset
-      }}</base-button>
+      <base-button type="submit" class="form__btn form__btn_submit" size="md">
+        <span>{{ Buttons[formView] }}</span>
+        <v-icon name="io-paw" scale="0.9" />
+      </base-button>
+      <base-button class="form__btn form__btn_reset" size="md" @click="handleReset"
+        ><span>{{ Buttons.Reset }}</span></base-button
+      >
     </div>
   </form>
 </template>
@@ -181,7 +181,6 @@ watch(
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    // color: darken($text-color-secondary, 25%);
     color: $color-active;
   }
 
@@ -209,6 +208,9 @@ watch(
   &__btn {
     &_submit {
       background: $color-primary;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
 
       &:not(:disabled):hover {
         background: $color-hover;

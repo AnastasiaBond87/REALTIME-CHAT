@@ -4,11 +4,15 @@ import ChatSidebar from '@/components/ChatSidebar/ChatSidebar.vue';
 
 <template>
   <main class="main">
-    <chat-sidebar />
+    <div class="container">
+      <div class="main__wrapper">
+        <chat-sidebar />
+      </div>
+    </div>
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .main {
   flex: 1 1 auto;
 }

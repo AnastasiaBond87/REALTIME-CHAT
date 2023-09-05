@@ -3,9 +3,13 @@ import {
   BiEyeSlashFill,
   RiUserAddFill,
   RiUserSharedFill,
-  RiSettings5Fill,
-  IoLogoOctocat,
   LaCatSolid,
+  IoPaw,
+  RiLogoutCircleRLine,
+  RiUserFill,
+  BiMoonFill,
+  BiSunFill,
+  FaCloudUploadAlt,
 } from 'oh-vue-icons/icons';
 
 export default [
@@ -13,7 +17,11 @@ export default [
   BiEyeSlashFill,
   RiUserAddFill,
   RiUserSharedFill,
-  RiSettings5Fill,
-  IoLogoOctocat,
   LaCatSolid,
+  IoPaw,
+  RiLogoutCircleRLine,
+  RiUserFill,
+  BiMoonFill,
+  BiSunFill,
+  FaCloudUploadAlt,
 ];

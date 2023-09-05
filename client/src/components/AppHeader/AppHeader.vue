@@ -2,26 +2,32 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <router-link :to="{ name: 'Home' }" class="header__logo logo">
-          <v-icon name="la-cat-solid" scale="1.8" class="logo__icon" />
-          <p class="logo__text">
-            <span class="logo__text-item logo__text-item_1">Cat</span>
-            <span class="logo__text-item logo__text-item_2">Chat</span>
-          </p>
-        </router-link>
-        <icon-button class="settings">
-          <v-icon name="ri-settings-5-fill" scale="1.5" />
-        </icon-button>
+        <app-logo />
+        <div class="header__panel panel">
+          <icon-button v-if="isAuth" @click="authStore.logout">
+            <v-icon name="ri-logout-circle-r-line" scale="1.5" />
+          </icon-button>
+          <router-link :to="{ name: 'Account' }" class="panel__account" v-if="isAuth">
+            <v-icon name="ri-user-fill" scale="1.5" />
+          </router-link>
+          <theme-switch />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import IconButton from '@/ui/IconButton/IconButton.vue';
+import ThemeSwitch from '@/components/ThemeSwitch/ThemeSwitch.vue';
+import AppLogo from '@/components/AppLogo/AppLogo.vue';
+import { useAuthStore } from '@/stores/auth';
+import { storeToRefs } from 'pinia';
+
+const authStore = useAuthStore();
+const { isAuth } = storeToRefs(authStore);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header {
   padding: 1rem 0;
 
@@ -30,37 +36,16 @@ import IconButton from '@/ui/IconButton/IconButton.vue';
     justify-content: space-between;
     align-items: center;
   }
-}
 
-.logo {
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-
-  &__icon {
-    color: $color-active;
-  }
-
-  &__text {
-    margin: 0;
-  }
-
-  &__text-item {
-    text-transform: uppercase;
-    font-weight: 700;
-
-    &_1 {
-      color: darken($text-color-secondary, 20%);
-    }
-
-    &_2 {
-      color: $color-active;
-    }
+  &__panel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }
-.settings {
-  color: darken($text-color-secondary, 20%);
+.panel {
+  &__account {
+    color: $color-secondary;
+  }
 }
 </style>

@@ -34,7 +34,6 @@ const btnClassList = computed(() => ({
 .btn {
   border: none;
   border-radius: 0.2rem;
-  line-height: 1.14rem;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
   font-weight: 600;
@@ -55,6 +54,10 @@ const btnClassList = computed(() => ({
     background: none;
     border: 1px solid $color-secondary;
     cursor: default;
+  }
+  :slotted(span) {
+    line-height: 1.14rem;
+    font-size: 1rem;
   }
 
   @include sizes;

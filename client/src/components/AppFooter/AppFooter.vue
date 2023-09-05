@@ -1,14 +1,21 @@
 <template>
   <footer class="footer">
-    <p class="footer__copyright">Anastasia Bondarenko © 2023</p>
+    <div class="container">
+      <div class="footer__wrapper">
+        <p class="footer__copyright">CatChat © 2023</p>
+      </div>
+    </div>
   </footer>
 </template>
 
 <style lang="scss" scoped>
 .footer {
-  display: flex;
-  justify-content: center;
   padding: 1rem 0;
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
 
   &__copyright {
     color: $text-color-secondary;

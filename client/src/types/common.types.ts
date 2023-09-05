@@ -1,5 +1,7 @@
 type TSize = 'sm' | 'md' | 'lg';
 
+type TTheme = 'dark' | 'light';
+
 type TFormView = 'SignIn' | 'SignUp';
 
 interface IFormFields {
@@ -10,12 +12,17 @@ interface IFormFields {
 }
 
 interface IUser {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   password: string;
-  createdAt: string;
-  updatedAt: string;
+  avatar: string;
 }
 
-export type { TSize, TFormView, IFormFields, IUser };
+interface ITabs {
+  id: number;
+  name: string;
+  title: string;
+}
+
+export type { TSize, TFormView, IFormFields, IUser, TTheme, ITabs };
