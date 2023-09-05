@@ -45,10 +45,21 @@ const emit = defineEmits<{
     position: relative;
     transition: all 0.5s;
 
+    &::before {
+      content: '';
+      position: absolute;
+      right: 50%;
+      width: 0;
+      bottom: -0.5rem;
+      height: 1px;
+      background: $color-active;
+      transition: all 0.5s;
+    }
+
     &::after {
       content: '';
       position: absolute;
-      left: 0;
+      left: 50%;
       width: 0;
       bottom: -0.5rem;
       height: 1px;
@@ -59,8 +70,9 @@ const emit = defineEmits<{
     &.active {
       color: $color-active;
 
-      &::after {
-        width: 100%;
+      &::after,
+      &::before {
+        width: 50%;
       }
     }
   }
