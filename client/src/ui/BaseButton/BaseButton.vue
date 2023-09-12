@@ -45,14 +45,10 @@ const btnClassList = computed(() => ({
     box-shadow: $shadow-primary;
   }
 
-  &:not(:disabled):active {
-    box-shadow: $shadow-primary;
-  }
-
   &:disabled {
     color: $text-color-secondary;
     background: none;
-    border: 1px solid $color-secondary;
+    outline: 1px solid $color-secondary;
     cursor: default;
   }
   :slotted(span) {

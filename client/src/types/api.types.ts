@@ -5,12 +5,6 @@ interface IErrorResponse {
   message: string;
 }
 
-type TLoginRequest = Pick<IUser, 'email' | 'password'>;
-
-type TLogoutRequest = Pick<IUser, '_id'>;
-
-type TRegistrationRequest = TLoginRequest & Pick<IUser, 'name'>;
-
 interface IUserResponse extends IUser {
   accessToken: string;
 }
@@ -20,11 +14,4 @@ interface IDeleteResponse {
   message: string;
 }
 
-export type {
-  IErrorResponse,
-  TLoginRequest,
-  TRegistrationRequest,
-  IUserResponse,
-  TLogoutRequest,
-  IDeleteResponse,
-};
+export type { IErrorResponse, IUserResponse, IDeleteResponse };

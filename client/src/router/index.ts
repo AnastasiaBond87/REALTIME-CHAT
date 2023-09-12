@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import ChatView from '@/views/ChatView.vue';
 import NotFound from '@/views/NotFoundView.vue';
-import AccountView from '@/views/AccountView.vue';
+import ProfileView from '@/views/ProfileView.vue';
 import { useAuthStore } from '@/stores/auth';
 
 const router = createRouter({
@@ -19,9 +19,9 @@ const router = createRouter({
       component: ChatView,
     },
     {
-      path: '/account',
-      name: 'Account',
-      component: AccountView,
+      path: '/profile',
+      name: 'Profile',
+      component: ProfileView,
     },
     {
       path: '/:notFound',

@@ -3,13 +3,15 @@ import type { TTheme } from '@/types/common.types';
 
 interface State {
   theme: TTheme;
+  isModalVisible: boolean;
 }
 
 const initialState: State = {
   theme: (localStorage.getItem('GVGT8_THEME') ?? 'light') as TTheme,
+  isModalVisible: false,
 };
 
-const useThemeStore = defineStore('theme', {
+const useAppStore = defineStore('app', {
   state: (): State => initialState,
   actions: {
     switchTheme() {
@@ -21,7 +23,10 @@ const useThemeStore = defineStore('theme', {
         localStorage.setItem('GVGT8_THEME', 'dark');
       }
     },
+    showModal(value: boolean) {
+      this.isModalVisible = value;
+    },
   },
 });
 
-export { useThemeStore };
+export { useAppStore };

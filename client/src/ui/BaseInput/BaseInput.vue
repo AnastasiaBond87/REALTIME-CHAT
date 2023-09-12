@@ -25,9 +25,12 @@ const props = defineProps({
     type: String as PropType<InputHTMLAttributes['autocomplete']>,
     required: true,
   },
+  label: {
+    type: String,
+  },
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
 
 const inputClassList = computed(() => ({
   small: props.size === 'sm',
@@ -46,6 +49,7 @@ const handleChange = (event: Event) => {
 
 <template>
   <div class="wrapper">
+    <label v-if="label" class="label">{{ props.label }}</label>
     <input
       :type="props.type"
       class="input"
@@ -67,6 +71,12 @@ const handleChange = (event: Event) => {
   display: flex;
   flex-direction: column;
   position: relative;
+}
+
+.label {
+  text-transform: capitalize;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
 }
 .input {
   outline: none;

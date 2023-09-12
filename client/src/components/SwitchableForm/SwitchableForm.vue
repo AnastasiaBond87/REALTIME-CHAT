@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import BaseButton from '@/ui/BaseButton/BaseButton.vue';
+import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
+import ResetButton from '@/ui/ResetButton/ResetButton.vue';
 import BaseInput from '@/ui/BaseInput/BaseInput.vue';
 import ShowPasswordButton from '@/components/ShowPasswordButton/ShowPasswordButton.vue';
 import { useVuelidate } from '@vuelidate/core';
@@ -9,6 +10,9 @@ import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
 import { initialState, customMessages } from '@/constants/form';
 import { useAuthStore } from '@/stores/auth';
+import { validatePassword } from '@/utils/validatePassword';
+import { resetFormState } from '@/utils/resetFormState';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps({
   formView: {
@@ -17,16 +21,12 @@ const props = defineProps({
   },
 });
 
-const { login, registration } = useAuthStore();
-
+const authStore = useAuthStore();
+const { isLoading } = storeToRefs(authStore);
+const { login, registration } = authStore;
 const isPasswordVisible = ref(false);
 const formState: IFormFields = reactive({ ...initialState });
-
 const passwordType = computed(() => (isPasswordVisible.value ? 'text' : 'password'));
-
-const passwordPattern = (value: string) =>
-  /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,15}/.test(value);
-
 const { userName, userEmail, userPassword, confirmPassword } = customMessages;
 
 const validators = computed(() => {
@@ -48,7 +48,7 @@ const validators = computed(() => {
       },
       password: {
         required: helpers.withMessage(userPassword.required, required),
-        pattern: helpers.withMessage(userPassword.pattern, passwordPattern),
+        pattern: helpers.withMessage(userPassword.pattern, validatePassword),
       },
       confirmPassword: {
         required: helpers.withMessage(confirmPassword.required, required),
@@ -71,17 +71,15 @@ const handleSubmit = async (): Promise<void> => {
     const { name, email, password } = formState;
 
     if (props.formView === 'SignUp') {
-      await registration({ name, email, password });
+      await registration(name, email, password);
     } else {
-      await login({ email, password });
+      await login(email, password);
     }
   }
 };
 
 const handleReset = (): void => {
-  for (let key in formState) {
-    formState[key as keyof IFormFields] = initialState[key as keyof IFormFields];
-  }
+  resetFormState<IFormFields>(formState, initialState);
   v$.value.$reset();
 };
 
@@ -133,6 +131,7 @@ watch(
           class="form__password-btn"
           @click="showPassword"
           :is-password-visible="isPasswordVisible"
+          :scale="1.3"
         />
       </base-input>
       <base-input
@@ -149,17 +148,16 @@ watch(
           class="form__password-btn"
           @click="showPassword"
           :is-password-visible="isPasswordVisible"
+          :scale="1.3"
         />
       </base-input>
     </div>
     <div class="form__btns">
-      <base-button type="submit" class="form__btn form__btn_submit" size="md">
-        <span>{{ Buttons[formView] }}</span>
-        <v-icon name="io-paw" scale="0.9" />
-      </base-button>
-      <base-button class="form__btn form__btn_reset" size="md" @click="handleReset"
-        ><span>{{ Buttons.Reset }}</span></base-button
-      >
+      <submit-button
+        :loading="isLoading"
+        :name="formView === 'SignIn' ? Buttons.SignIn : Buttons.SignUp"
+      />
+      <reset-button @reset="handleReset" :loading="isLoading" />
     </div>
   </form>
 </template>
@@ -203,35 +201,6 @@ watch(
     display: flex;
     align-self: flex-end;
     gap: 1rem;
-  }
-
-  &__btn {
-    &_submit {
-      background: $color-primary;
-      display: flex;
-      gap: 0.5rem;
-      align-items: flex-end;
-
-      &:not(:disabled):hover {
-        background: $color-hover;
-      }
-
-      &:not(:disabled):active {
-        background: $color-active;
-      }
-    }
-
-    &_reset {
-      background: darken($color-secondary, 20%);
-
-      &:not(:disabled):hover {
-        background: darken($color-secondary, 25%);
-      }
-
-      &:not(:disabled):active {
-        background: darken($color-secondary, 10%);
-      }
-    }
   }
 }
 </style>

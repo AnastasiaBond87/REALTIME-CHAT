@@ -4,6 +4,7 @@ enum Buttons {
   SignIn = 'Sign in',
   SignUp = 'Sign up',
   Reset = 'Reset',
+  Submit = 'Submit',
 }
 
 const AccountTabs: ITabs[] = [

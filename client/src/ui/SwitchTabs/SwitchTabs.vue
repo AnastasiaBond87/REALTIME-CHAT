@@ -40,7 +40,7 @@ const emit = defineEmits<{
   border-bottom: 1px solid $color-secondary;
 
   &__btn {
-    color: darken($color-secondary, 20%);
+    color: darken($color-secondary, 50%);
     font-size: 1.2rem;
     position: relative;
     transition: all 0.5s;

@@ -1,10 +1,5 @@
 import { defineStore } from 'pinia';
-import type {
-  IErrorResponse,
-  IUserResponse,
-  TLoginRequest,
-  TRegistrationRequest,
-} from '@/types/api.types';
+import type { IErrorResponse, IUserResponse } from '@/types/api.types';
 import UserApi from '@/api/UserApi';
 import type { AxiosError } from 'axios';
 import router from '@/router';
@@ -36,6 +31,10 @@ const useAuthStore = defineStore('auth', {
     },
   },
   actions: {
+    setLoading() {
+      this.isLoading = true;
+      this.error = '';
+    },
     responseError(error: unknown): void {
       const { response } = error as AxiosError<IErrorResponse>;
 
@@ -50,15 +49,11 @@ const useAuthStore = defineStore('auth', {
       this.user = user;
       router.push({ name: 'Chat' });
     },
-    setLoading() {
-      this.isLoading = true;
-      this.error = '';
-    },
-    async registration({ name, email, password }: TRegistrationRequest): Promise<void> {
+    async registration(name: string, email: string, password: string): Promise<void> {
       this.setLoading();
 
       try {
-        const user = await UserApi.registration({ name, email, password });
+        const user = await UserApi.registration(name, email, password);
         this.authSuccess(user);
       } catch (err) {
         this.responseError(err);
@@ -66,11 +61,11 @@ const useAuthStore = defineStore('auth', {
         this.isLoading = false;
       }
     },
-    async login({ email, password }: TLoginRequest): Promise<void> {
+    async login(email: string, password: string): Promise<void> {
       this.setLoading();
 
       try {
-        const user = await UserApi.login({ email, password });
+        const user = await UserApi.login(email, password);
         localStorage.setItem('GVGT8_accessToken', user.accessToken);
         this.authSuccess(user);
       } catch (err) {
@@ -79,7 +74,7 @@ const useAuthStore = defineStore('auth', {
         this.isLoading = false;
       }
     },
-    async logout() {
+    async logout(): Promise<void> {
       this.setLoading();
 
       try {
@@ -88,6 +83,36 @@ const useAuthStore = defineStore('auth', {
           this.$reset();
           router.push({ name: 'Home' });
         }
+      } catch (err) {
+        this.responseError(err);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async updateProfile(id: string, name: string, email: string): Promise<IUserResponse | void> {
+      this.setLoading();
+
+      try {
+        const user = await UserApi.updateProfile(id, name, email);
+        this.user = user;
+        return user;
+      } catch (err) {
+        this.responseError(err);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async updatePassword(
+      id: string,
+      password: string,
+      newPassword: string
+    ): Promise<IUserResponse | void> {
+      this.setLoading();
+
+      try {
+        const user = await UserApi.updatePassword(id, password, newPassword);
+        this.user = user;
+        return user;
       } catch (err) {
         this.responseError(err);
       } finally {

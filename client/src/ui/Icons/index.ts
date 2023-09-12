@@ -10,6 +10,7 @@ import {
   BiMoonFill,
   BiSunFill,
   FaCloudUploadAlt,
+  FaSpinner,
 } from 'oh-vue-icons/icons';
 
 export default [
@@ -24,4 +25,5 @@ export default [
   BiMoonFill,
   BiSunFill,
   FaCloudUploadAlt,
+  FaSpinner,
 ];

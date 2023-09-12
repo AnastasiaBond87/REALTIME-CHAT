@@ -2,17 +2,29 @@
 import { RouterView } from 'vue-router';
 import AppFooter from '@/components/AppFooter/AppFooter.vue';
 import AppHeader from '@/components/AppHeader/AppHeader.vue';
-import { useThemeStore } from '@/stores/theme';
-import { computed } from 'vue';
+import { useAppStore } from '@/stores/app';
+import { useAuthStore } from '@/stores/auth';
+import { computed, watch } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
-const themeStore = useThemeStore();
-const { theme } = storeToRefs(themeStore);
+const appStore = useAppStore();
+const authStore = useAuthStore();
+const { theme } = storeToRefs(appStore);
+const $toast = useToast();
 
 const layoutClassList = computed(() => ({
   light: theme.value === 'light',
   dark: theme.value === 'dark',
 }));
+
+watch(
+  () => authStore.error,
+  (err) => {
+    if (err) $toast.error(err);
+  }
+);
 </script>
 
 <template>

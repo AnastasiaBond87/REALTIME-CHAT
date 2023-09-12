@@ -4,10 +4,10 @@
       <div class="header__wrapper">
         <app-logo />
         <div class="header__panel panel">
-          <icon-button v-if="isAuth" @click="authStore.logout">
+          <icon-button v-if="isAuth" @click="logout">
             <v-icon name="ri-logout-circle-r-line" scale="1.5" />
           </icon-button>
-          <router-link :to="{ name: 'Account' }" class="panel__account" v-if="isAuth">
+          <router-link :to="{ name: 'Profile' }" class="panel__account" v-if="isAuth">
             <v-icon name="ri-user-fill" scale="1.5" />
           </router-link>
           <theme-switch />
@@ -25,6 +25,7 @@ import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
 const { isAuth } = storeToRefs(authStore);
+const { logout } = authStore;
 </script>
 
 <style lang="scss" scoped>

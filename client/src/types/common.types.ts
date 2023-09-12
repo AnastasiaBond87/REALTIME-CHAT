@@ -11,6 +11,10 @@ interface IFormFields {
   confirmPassword: string;
 }
 
+type TProfileFormFields = Pick<IFormFields, 'email' | 'name'>;
+
+type TPasswordFormFields = Pick<IFormFields, 'password' | 'confirmPassword'>;
+
 interface IUser {
   id: string;
   name: string;
@@ -25,4 +29,13 @@ interface ITabs {
   title: string;
 }
 
-export type { TSize, TFormView, IFormFields, IUser, TTheme, ITabs };
+export type {
+  TSize,
+  TFormView,
+  IFormFields,
+  IUser,
+  TTheme,
+  ITabs,
+  TProfileFormFields,
+  TPasswordFormFields,
+};

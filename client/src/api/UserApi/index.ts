@@ -1,34 +1,32 @@
 import { Endpoints } from '@/constants/url';
-import type {
-  IUserResponse,
-  TRegistrationRequest,
-  TLoginRequest,
-  IDeleteResponse,
-} from '@/types/api.types';
+import type { IUserResponse, IDeleteResponse } from '@/types/api.types';
 import axiosInstance from '@/api/instance';
 
 class UserApi {
-  static async registration({
-    name,
-    email,
-    password,
-  }: TRegistrationRequest): Promise<IUserResponse> {
-    const res = await axiosInstance.post(Endpoints.registration, { name, password, email });
-    const { data } = res;
-    return data;
-  }
+  static registration = (name: string, email: string, password: string): Promise<IUserResponse> =>
+    axiosInstance.post(Endpoints.registration, { name, password, email }).then((res) => res.data);
 
-  static async login({ email, password }: TLoginRequest): Promise<IUserResponse> {
-    const res = await axiosInstance.post(Endpoints.login, { password, email });
-    const { data } = res;
-    return data;
-  }
+  static login = (email: string, password: string): Promise<IUserResponse> =>
+    axiosInstance.post(Endpoints.login, { password, email }).then((res) => res.data);
 
-  static async logout(): Promise<IDeleteResponse> {
-    const res = await axiosInstance.post(Endpoints.logout);
-    const { data } = res;
-    return data;
-  }
+  static logout = (): Promise<IDeleteResponse> =>
+    axiosInstance.post(Endpoints.logout).then((res) => res.data);
+
+  static updateProfile = (id: string, name: string, email: string): Promise<IUserResponse> =>
+    axiosInstance.patch(Endpoints.updateProfile, { _id: id, name, email }).then((res) => res.data);
+
+  static updatePassword = (
+    id: string,
+    password: string,
+    newPassword: string
+  ): Promise<IUserResponse> =>
+    axiosInstance
+      .patch(Endpoints.updatePassword, {
+        _id: id,
+        password,
+        newPassword,
+      })
+      .then((res) => res.data);
 }
 
 export default UserApi;

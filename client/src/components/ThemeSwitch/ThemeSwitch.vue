@@ -1,6 +1,6 @@
 <template>
   <div class="switch" :class="switchClassList">
-    <icon-button @click="themeStore.switchTheme" class="switch__btn" :class="switchClassList">
+    <icon-button @click="appStore.switchTheme" class="switch__btn" :class="switchClassList">
       <v-icon name="bi-sun-fill" scale="1" v-if="theme === 'light'" />
       <v-icon name="bi-moon-fill" scale="1" v-else />
     </icon-button>
@@ -9,11 +9,11 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useThemeStore } from '@/stores/theme';
+import { useAppStore } from '@/stores/app';
 import { computed } from 'vue';
 
-const themeStore = useThemeStore();
-const { theme } = storeToRefs(themeStore);
+const appStore = useAppStore();
+const { theme } = storeToRefs(appStore);
 
 const switchClassList = computed(() => ({
   dark: theme.value === 'dark',

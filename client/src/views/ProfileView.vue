@@ -6,6 +6,8 @@
           <upload-avatar />
           <div class="main__forms">
             <switch-tabs :active-tab="activeTab" :tabs="AccountTabs" @set-active-tab="switchTab" />
+            <update-profile v-if="activeTab === 'user-info'" />
+            <update-password v-if="activeTab === 'password'" />
           </div>
         </div>
       </div>
@@ -16,6 +18,8 @@
 <script setup lang="ts">
 import UploadAvatar from '@/components/UploadAvatar/UploadAvatar.vue';
 import SwitchTabs from '@/ui/SwitchTabs/SwitchTabs.vue';
+import UpdateProfile from '@/components/UpdateProfile/UpdateProfile.vue';
+import UpdatePassword from '@/components/UpdatePassword/UpdatePassword.vue';
 import { ref } from 'vue';
 import { AccountTabs } from '@/constants/common';
 
