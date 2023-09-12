@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { IToken } from '../types/index.js';
 
 const tokenShema = new Schema<IToken>({
-  user: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },

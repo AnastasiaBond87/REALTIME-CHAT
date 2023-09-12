@@ -7,11 +7,17 @@ interface IUser {
   name: string;
   email: string;
   password: string;
+  avatar: string;
 }
 
 interface IToken {
-  user: IUser;
+  userId: IUser;
   refreshToken: string;
 }
 
-export type { TRequestBody, IUser, IToken };
+interface IUserData extends IUser {
+  refreshToken?: string;
+  accessToken?: string;
+}
+
+export type { TRequestBody, IUser, IToken, IUserData };

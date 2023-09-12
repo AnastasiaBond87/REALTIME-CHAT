@@ -16,6 +16,10 @@ const userSchema = new Schema<IUser>(
       type: Schema.Types.String,
       required: true,
     },
+    avatar: {
+      type: Schema.Types.String,
+      default: '',
+    },
   },
   {
     timestamps: true,
