@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/UserController.js';
+import uploader from '../multer.js';
 
 const router = Router();
 
@@ -9,4 +10,4 @@ router.post('/logout', UserController.logout);
 router.patch('/updateProfile', UserController.updateProfile);
 router.patch('/updatePassword', UserController.updatePassword);
 
-export { router };
+export { router as userRouter };

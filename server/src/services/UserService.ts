@@ -12,7 +12,7 @@ class UserService {
     const user = await UserModel.findOne({ email });
 
     if (user) {
-      throw new AppError(409, `User with ${email} already exist`);
+      throw new AppError(409, `User with email ${email} already exist`);
     }
 
     const hashedPassword = await bcrypt.hash(password, 5);
@@ -31,7 +31,7 @@ class UserService {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-      throw new AppError(404, `User with ${email} does not exist`);
+      throw new AppError(404, `User with email ${email} does not exist`);
     }
 
     const { password: userPassword, _id } = user;

@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors, { CorsOptions } from 'cors';
 import { Server as ServerIO } from 'socket.io';
 import 'dotenv/config';
-import { router } from './src/routes/user.js';
+import { router } from './src/routes/index.js';
 import ErrorMiddleware from './src/middlewares/ErrorMiddleware.js';
 
 const PORT = process.env.PORT || 5000;
@@ -16,9 +16,10 @@ const corsOptions: CorsOptions = {
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use('/api', router);
+app.use('/', router);
 app.use(ErrorMiddleware.errorHandler);
 
 const server = createServer(app);

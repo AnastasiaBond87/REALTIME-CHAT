@@ -3,6 +3,7 @@ import type { TRequestBody, IUser } from '../types/index.js';
 import UserService from '../services/UserService.js';
 import TokenService from '../services/TokenService.js';
 import UserDto from '../dto/UserDto.js';
+import UploadService from '../services/UploadService.js';
 
 class UserController {
   async registration(req: TRequestBody<Omit<IUser, '_id'>>, res: Response, next: NextFunction) {
@@ -87,6 +88,21 @@ class UserController {
       next(err);
     }
   }
-}
 
+  async uploadAvatar(req: TRequestBody<Pick<IUser, '_id'>>, res: Response, next: NextFunction) {
+    try {
+      const { file } = req;
+      const { _id } = req.body;
+
+      if (file) {
+        const user = await UploadService.uploadAvatar(_id, file.path);
+        const userDto = new UserDto(user);
+
+        return res.status(200).json(userDto);
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
+}
 export default new UserController();
