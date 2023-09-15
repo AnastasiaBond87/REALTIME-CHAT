@@ -2,7 +2,7 @@
 import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
 import ResetButton from '@/ui/ResetButton/ResetButton.vue';
 import BaseInput from '@/ui/BaseInput/BaseInput.vue';
-import ShowPasswordButton from '@/components/ShowPasswordButton/ShowPasswordButton.vue';
+import ShowPasswordButton from '@/ui/ShowPasswordButton/ShowPasswordButton.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, sameAs, helpers, maxLength } from '@vuelidate/validators';
 import { reactive, computed, ref, PropType, watch } from 'vue';

@@ -27,6 +27,8 @@ class UserApi {
         newPassword,
       })
       .then((res) => res.data);
+  static uploadAvatar = (formData: FormData): Promise<IUserResponse> =>
+    axiosInstance.patch(Endpoints.uploadAvatar, formData).then((res) => res.data);
 }
 
 export default UserApi;

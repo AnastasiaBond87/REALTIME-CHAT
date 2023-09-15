@@ -44,11 +44,11 @@
 
 <script setup lang="ts">
 import BaseInput from '@/ui/BaseInput/BaseInput.vue';
-import ShowPasswordButton from '@/components/ShowPasswordButton/ShowPasswordButton.vue';
+import ShowPasswordButton from '@/ui/ShowPasswordButton/ShowPasswordButton.vue';
 import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
 import ResetButton from '@/ui/ResetButton/ResetButton.vue';
 import AppModal from '@/components/AppModal/AppModal.vue';
-import ConfirmPaswordUpdate from '@/components/UpdatePassword/ConfirmPasswordUpdate/ConfirmPaswordUpdate.vue';
+import ConfirmPaswordUpdate from '@/features/UpdatePassword/ConfirmPasswordUpdate/ConfirmPaswordUpdate.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { sameAs, helpers } from '@vuelidate/validators';
 import { validatePassword } from '@/utils/validatePassword';

@@ -11,7 +11,7 @@ addIcons(...Icons);
 
 const pinia = createPinia();
 const app = createApp(App);
-app.use(router);
-app.use(pinia);
+
 app.component('v-icon', OhVueIcon);
-app.mount('#app');
+
+app.use(router).use(pinia).mount('#app');

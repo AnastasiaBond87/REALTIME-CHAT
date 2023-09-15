@@ -16,10 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import UploadAvatar from '@/components/UploadAvatar/UploadAvatar.vue';
+import UploadAvatar from '@/features/UploadAvatar/UploadAvatar.vue';
 import SwitchTabs from '@/ui/SwitchTabs/SwitchTabs.vue';
-import UpdateProfile from '@/components/UpdateProfile/UpdateProfile.vue';
-import UpdatePassword from '@/components/UpdatePassword/UpdatePassword.vue';
+import UpdateProfile from '@/features/UpdateProfile/UpdateProfile.vue';
+import UpdatePassword from '@/features/UpdatePassword/UpdatePassword.vue';
 import { ref } from 'vue';
 import { AccountTabs } from '@/constants/common';
 

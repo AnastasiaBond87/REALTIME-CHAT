@@ -29,6 +29,11 @@ const useAuthStore = defineStore('auth', {
         return accessToken;
       }
     },
+    getAvatar(): string | undefined {
+      if (this.user) {
+        return this.user.avatar;
+      }
+    },
   },
   actions: {
     setLoading() {
@@ -117,6 +122,19 @@ const useAuthStore = defineStore('auth', {
         this.responseError(err);
       } finally {
         this.isLoading = false;
+      }
+    },
+    async uploadAvatar(formData: FormData) {
+      if (this.user) {
+        this.setLoading();
+        try {
+          const user = await UserApi.uploadAvatar(formData);
+          this.user = user;
+        } catch (err) {
+          this.responseError(err);
+        } finally {
+          this.isLoading = false;
+        }
       }
     },
   },

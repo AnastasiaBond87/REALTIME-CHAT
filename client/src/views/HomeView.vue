@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SwitchableForm from '@/components/SwitchableForm/SwitchableForm.vue';
+import UserLogin from '@/features/UserLogin/UserLogin.vue';
 import TextButton from '@/ui/TextButton/TextButton.vue';
 import { type TFormView } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
@@ -16,7 +16,7 @@ const switchForm = (): void => {
   <main class="main">
     <div class="container">
       <div class="main__wrapper">
-        <switchable-form :form-view="formView" />
+        <user-login :form-view="formView" />
         <div class="main__footer">
           <span>{{
             formView === 'SignIn' ? `Don't have an account yet?` : 'Already have an account?'
