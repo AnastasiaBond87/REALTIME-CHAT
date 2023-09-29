@@ -5,7 +5,7 @@ import BaseInput from '@/ui/BaseInput/BaseInput.vue';
 import ShowPasswordButton from '@/ui/ShowPasswordButton/ShowPasswordButton.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, sameAs, helpers, maxLength } from '@vuelidate/validators';
-import { reactive, computed, ref, PropType, watch } from 'vue';
+import { reactive, computed, ref, watch } from 'vue';
 import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
 import { initialState, customMessages } from '@/constants/form';
@@ -14,12 +14,11 @@ import { validatePassword } from '@/utils/validatePassword';
 import { resetFormState } from '@/utils/resetFormState';
 import { storeToRefs } from 'pinia';
 
-const props = defineProps({
-  formView: {
-    type: String as PropType<TFormView>,
-    required: true,
-  },
-});
+interface IProps {
+  formView: TFormView;
+}
+
+const props = defineProps<IProps>();
 
 const userStore = useUserStore();
 const { isLoading } = storeToRefs(userStore);

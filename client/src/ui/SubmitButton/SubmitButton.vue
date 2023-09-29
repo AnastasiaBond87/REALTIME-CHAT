@@ -9,17 +9,14 @@
 <script setup lang="ts">
 import BaseButton from '@/ui/BaseButton/BaseButton.vue';
 import { Buttons } from '@/constants/common';
-import { PropType } from 'vue';
 
-defineProps({
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  name: {
-    type: String as PropType<Buttons>,
-    required: true,
-  },
+interface IProps {
+  loading?: boolean;
+  name: Buttons;
+}
+
+withDefaults(defineProps<IProps>(), {
+  loading: false,
 });
 </script>
 

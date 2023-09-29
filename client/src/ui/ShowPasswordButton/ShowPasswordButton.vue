@@ -1,13 +1,10 @@
 <script setup lang="ts">
-defineProps({
-  isPasswordVisible: {
-    type: Boolean,
-    required: true,
-  },
-  scale: {
-    type: Number,
-    default: 1,
-  },
+interface IProps {
+  isPasswordVisible: boolean;
+  scale?: number;
+}
+withDefaults(defineProps<IProps>(), {
+  scale: 1,
 });
 </script>
 

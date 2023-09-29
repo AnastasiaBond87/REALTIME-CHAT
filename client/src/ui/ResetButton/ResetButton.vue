@@ -8,11 +8,12 @@
 import BaseButton from '@/ui/BaseButton/BaseButton.vue';
 import { Buttons } from '@/constants/common';
 
-defineProps({
-  loading: {
-    type: Boolean,
-    default: false,
-  },
+interface IProps {
+  loading?: boolean;
+}
+
+withDefaults(defineProps<IProps>(), {
+  loading: false,
 });
 
 const emits = defineEmits<{ reset: [] }>();

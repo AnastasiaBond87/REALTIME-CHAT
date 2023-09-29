@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { ButtonHTMLAttributes, PropType } from 'vue';
+import { ButtonHTMLAttributes } from 'vue';
 
-const props = defineProps({
-  type: {
-    type: String as PropType<ButtonHTMLAttributes['type']>,
-    default: 'button',
-  },
+interface IProps {
+  type?: ButtonHTMLAttributes['type'];
+}
+
+withDefaults(defineProps<IProps>(), {
+  type: 'button',
 });
 </script>
 
 <template>
-  <button :type="props.type" class="btn">
+  <button :type="type" class="btn">
     <slot></slot>
   </button>
 </template>

@@ -1,33 +1,21 @@
 <script setup lang="ts">
-import { InputHTMLAttributes, PropType, computed } from 'vue';
+import { InputHTMLAttributes, computed } from 'vue';
 import type { ErrorObject } from '@vuelidate/core';
 import type { TSize } from '@/types/common.types';
 
-const props = defineProps({
-  type: {
-    type: String as PropType<InputHTMLAttributes['type']>,
-    default: 'text',
-  },
-  size: {
-    type: String as PropType<TSize>,
-  },
-  placeholder: {
-    type: String,
-  },
-  modelValue: {
-    type: String,
-    required: true,
-  },
-  errors: {
-    type: Array as PropType<ErrorObject[]>,
-  },
-  autocomplete: {
-    type: String as PropType<InputHTMLAttributes['autocomplete']>,
-    required: true,
-  },
-  label: {
-    type: String,
-  },
+interface IProps {
+  type?: InputHTMLAttributes['type'];
+  size?: TSize;
+  placeholder?: string;
+  modelValue: string;
+  errors?: ErrorObject[];
+  autocomplete: InputHTMLAttributes['autocomplete'];
+  label?: string;
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  type: 'text',
+  size: 'md',
 });
 
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>();

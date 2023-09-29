@@ -1,7 +1,7 @@
 <template>
   <div class="tabs">
     <text-button
-      v-for="{ id, name, title } in props.tabs"
+      v-for="{ id, name, title } in tabs"
       :key="id"
       class="tabs__btn"
       :class="{ active: activeTab === name }"
@@ -13,19 +13,14 @@
 
 <script setup lang="ts">
 import TextButton from '@/ui/TextButton/TextButton.vue';
-import { PropType } from 'vue';
 import { ITabs } from '@/types/common.types';
 
-const props = defineProps({
-  tabs: {
-    type: Array as PropType<ITabs[]>,
-    required: true,
-  },
-  activeTab: {
-    type: String,
-    required: true,
-  },
-});
+interface IProps {
+  tabs: ITabs[];
+  activeTab: string;
+}
+
+defineProps<IProps>();
 
 const emit = defineEmits<{
   setActiveTab: [value: string];

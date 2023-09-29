@@ -1,7 +1,7 @@
 <template>
   <div class="upload-avatar">
     <div class="upload-avatar__wrapper">
-      <user-avatar :img-id="user.avatar" v-if="user && user.avatar" :width="112" :height="112" />
+      <user-avatar :img-id="user.avatar" v-if="user && user.avatar" :size="112" />
       <v-icon name="ri-user-fill" class="upload-avatar__icon" scale="4" v-else />
     </div>
     <icon-button class="upload-avatar__btn" @click="handleClick">

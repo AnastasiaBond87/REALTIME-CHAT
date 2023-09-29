@@ -1,20 +1,16 @@
 <script setup lang="ts">
-import { ButtonHTMLAttributes, PropType, computed } from 'vue';
+import { ButtonHTMLAttributes, computed } from 'vue';
 import type { TSize } from '@/types/common.types';
 
-const props = defineProps({
-  type: {
-    type: String as PropType<ButtonHTMLAttributes['type']>,
-    default: 'button',
-  },
-  size: {
-    type: String as PropType<TSize>,
-    default: 'md',
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
+interface IProps {
+  type?: ButtonHTMLAttributes['type'];
+  size?: TSize;
+  disabled?: boolean;
+}
+const props = withDefaults(defineProps<IProps>(), {
+  type: 'button',
+  size: 'md',
+  disabled: false,
 });
 
 const btnClassList = computed(() => ({
