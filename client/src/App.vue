@@ -3,14 +3,14 @@ import { RouterView } from 'vue-router';
 import AppFooter from '@/components/AppFooter/AppFooter.vue';
 import AppHeader from '@/components/AppHeader/AppHeader.vue';
 import { useAppStore } from '@/stores/app';
-import { useAuthStore } from '@/stores/auth';
+import { useUserStore } from '@/stores/user';
 import { computed, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
 const appStore = useAppStore();
-const authStore = useAuthStore();
+const authStore = useUserStore();
 const { theme } = storeToRefs(appStore);
 const $toast = useToast();
 

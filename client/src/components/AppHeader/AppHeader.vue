@@ -20,12 +20,12 @@
 <script setup lang="ts">
 import ThemeSwitch from '@/components/ThemeSwitch/ThemeSwitch.vue';
 import AppLogo from '@/components/AppLogo/AppLogo.vue';
-import { useAuthStore } from '@/stores/auth';
+import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
 
-const authStore = useAuthStore();
-const { isAuth } = storeToRefs(authStore);
-const { logout } = authStore;
+const userStore = useUserStore();
+const { isAuth } = storeToRefs(userStore);
+const { logout } = userStore;
 </script>
 
 <style lang="scss" scoped>

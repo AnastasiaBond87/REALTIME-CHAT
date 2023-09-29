@@ -9,7 +9,7 @@ import { reactive, computed, ref, PropType, watch } from 'vue';
 import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
 import { initialState, customMessages } from '@/constants/form';
-import { useAuthStore } from '@/stores/auth';
+import { useUserStore } from '@/stores/user';
 import { validatePassword } from '@/utils/validatePassword';
 import { resetFormState } from '@/utils/resetFormState';
 import { storeToRefs } from 'pinia';
@@ -21,9 +21,9 @@ const props = defineProps({
   },
 });
 
-const authStore = useAuthStore();
-const { isLoading } = storeToRefs(authStore);
-const { login, registration } = authStore;
+const userStore = useUserStore();
+const { isLoading } = storeToRefs(userStore);
+const { login, registration } = userStore;
 const isPasswordVisible = ref(false);
 const formState: IFormFields = reactive({ ...initialState });
 const passwordType = computed(() => (isPasswordVisible.value ? 'text' : 'password'));

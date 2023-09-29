@@ -31,7 +31,7 @@ import { customMessages } from '@/constants/form';
 import { useVuelidate } from '@vuelidate/core';
 import { email, minLength, helpers, maxLength } from '@vuelidate/validators';
 import { ComputedRef, computed, reactive } from 'vue';
-import { useAuthStore } from '@/stores/auth';
+import { useUserStore } from '@/stores/user';
 import { TProfileFormFields } from '@/types/common.types';
 import { resetFormState } from '@/utils/resetFormState';
 import { storeToRefs } from 'pinia';
@@ -40,9 +40,9 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 import { Buttons } from '@/constants/common';
 
 const $toast = useToast();
-const authStore = useAuthStore();
-const { user, isLoading } = storeToRefs(authStore);
-const { updateProfile } = authStore;
+const userStore = useUserStore();
+const { user, isLoading } = storeToRefs(userStore);
+const { updateProfile } = userStore;
 const { userName, userEmail } = customMessages;
 
 const validators = computed(() => ({

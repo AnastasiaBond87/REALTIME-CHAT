@@ -15,12 +15,12 @@
 import UserAvatar from '@/components/UserAvatar/UserAvatar.vue';
 import IconButton from '@/ui/IconButton/IconButton.vue';
 import { ref } from 'vue';
-import { useAuthStore } from '@/stores/auth';
+import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
 
-const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
-const { uploadAvatar } = authStore;
+const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
+const { uploadAvatar } = userStore;
 const hiddenInput = ref<HTMLInputElement | null>(null);
 
 const handleClick = (): void => {

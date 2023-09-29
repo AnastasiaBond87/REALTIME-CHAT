@@ -18,7 +18,7 @@ const initialState: State = {
   user: null,
 };
 
-const useAuthStore = defineStore('auth', {
+const useUserStore = defineStore('user', {
   state: (): State => {
     return { ...initialState };
   },
@@ -140,4 +140,4 @@ const useAuthStore = defineStore('auth', {
   },
 });
 
-export { useAuthStore };
+export { useUserStore };
