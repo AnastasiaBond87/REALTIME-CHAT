@@ -10,8 +10,8 @@ import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
 const appStore = useAppStore();
-const authStore = useUserStore();
-const { theme } = storeToRefs(appStore);
+const userStore = useUserStore();
+const { theme, isModalVisible } = storeToRefs(appStore);
 const $toast = useToast();
 
 const layoutClassList = computed(() => ({
@@ -20,11 +20,19 @@ const layoutClassList = computed(() => ({
 }));
 
 watch(
-  () => authStore.error,
+  () => userStore.error,
   (err) => {
     if (err) $toast.error(err);
   }
 );
+
+watch(isModalVisible, (visible) => {
+  if (visible) {
+    document.body.classList.add('no-scroll');
+  } else {
+    document.body.classList.remove('no-scroll');
+  }
+});
 </script>
 
 <template>

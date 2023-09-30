@@ -4,7 +4,12 @@
       To confirm the password change, enter your current password
     </h4>
     <form class="confirm-pwd-update__form" @submit.prevent="handleSubmit">
-      <password-input size="lg" placeholder="Enter password" v-model.trim="password" />
+      <password-input
+        size="lg"
+        placeholder="Enter password"
+        v-model.trim="v$.password.$model"
+        :errors="v$.password.$errors"
+      />
       <submit-button :name="Buttons.Confirm" class="confirm-pwd-update__btn" />
     </form>
   </div>
@@ -13,31 +18,52 @@
 <script setup lang="ts">
 import PasswordInput from '@/ui/PasswordInput/PaswordInput.vue';
 import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
-import { ref } from 'vue';
-import { Buttons } from '../../../constants/common';
+import { computed, reactive } from 'vue';
+import { useVuelidate } from '@vuelidate/core';
+import { Buttons } from '@/constants/common';
+import { IFormFields } from '@/types/common.types';
+import { helpers, required } from '@vuelidate/validators';
+import { customMessages } from '@/constants/form';
 
 const emits = defineEmits<{ submit: [value: string] }>();
-const password = ref('');
+const { userPassword } = customMessages;
+
+type TState = Pick<IFormFields, 'password'>;
+
+const validators = computed(() => ({
+  password: {
+    required: helpers.withMessage(userPassword.required, required),
+  },
+}));
+
+const initialState: TState = {
+  password: '',
+};
+const formState: TState = reactive({ ...initialState });
+
+const v$ = useVuelidate<TState>(validators, formState);
 
 const handleSubmit = (): void => {
-  if (password.value) {
-    emits('submit', password.value);
+  v$.value.$validate();
+
+  if (!v$.value.$error) {
+    emits('submit', formState.password);
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .confirm-pwd-update {
-  background: $color-secondary;
+  background: #ffffff;
   border-radius: 0.5rem;
   width: 400px;
+  height: 400px;
   max-width: 100%;
-  height: 50%;
   box-sizing: border-box;
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 5rem;
 
   &__form {
     display: flex;
@@ -47,6 +73,7 @@ const handleSubmit = (): void => {
 
   &__title {
     line-height: 1.3;
+    font-size: 1.5rem;
     color: $color-primary;
   }
 
