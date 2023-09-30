@@ -29,13 +29,16 @@ const handleClick = () => {
   left: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
+  overflow: auto;
 
   &__container {
+    box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
   }
 }
 
