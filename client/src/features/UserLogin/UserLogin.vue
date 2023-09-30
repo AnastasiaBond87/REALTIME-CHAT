@@ -2,10 +2,10 @@
 import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
 import ResetButton from '@/ui/ResetButton/ResetButton.vue';
 import BaseInput from '@/ui/BaseInput/BaseInput.vue';
-import ShowPasswordButton from '@/ui/ShowPasswordButton/ShowPasswordButton.vue';
+import PasswordInput from '@/ui/PasswordInput/PaswordInput.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, sameAs, helpers, maxLength } from '@vuelidate/validators';
-import { reactive, computed, ref, watch } from 'vue';
+import { reactive, computed, watch } from 'vue';
 import { type TFormView, IFormFields } from '@/types/common.types';
 import { Buttons } from '@/constants/common';
 import { initialState, customMessages } from '@/constants/form';
@@ -23,9 +23,7 @@ const props = defineProps<IProps>();
 const userStore = useUserStore();
 const { isLoading } = storeToRefs(userStore);
 const { login, registration } = userStore;
-const isPasswordVisible = ref(false);
 const formState: IFormFields = reactive({ ...initialState });
-const passwordType = computed(() => (isPasswordVisible.value ? 'text' : 'password'));
 const { userName, userEmail, userPassword, confirmPassword } = customMessages;
 
 const validators = computed(() => {
@@ -58,10 +56,6 @@ const validators = computed(() => {
 });
 
 const v$ = useVuelidate<IFormFields>(validators, formState);
-
-const showPassword = (): void => {
-  isPasswordVisible.value = !isPasswordVisible.value;
-};
 
 const handleSubmit = async (): Promise<void> => {
   v$.value.$validate();
@@ -117,39 +111,17 @@ watch(
         :errors="v$.email.$errors"
         autocomplete="email"
       />
-      <base-input
-        :type="passwordType"
-        class="form__input"
+      <password-input
         placeholder="Enter password"
         v-model.trim="v$.password.$model"
         :errors="v$.password.$errors"
-        size="md"
-        autocomplete="new-password"
-      >
-        <show-password-button
-          class="form__password-btn"
-          @click="showPassword"
-          :is-password-visible="isPasswordVisible"
-          :scale="1.3"
-        />
-      </base-input>
-      <base-input
+      />
+      <password-input
         v-if="formView === 'SignUp' && v$.confirmPassword"
-        :type="passwordType"
-        class="form__input"
         placeholder="Confirm password"
-        size="md"
         v-model="v$.confirmPassword.$model"
         :errors="v$.confirmPassword.$errors"
-        autocomplete="new-password"
-      >
-        <show-password-button
-          class="form__password-btn"
-          @click="showPassword"
-          :is-password-visible="isPasswordVisible"
-          :scale="1.3"
-        />
-      </base-input>
+      />
     </div>
     <div class="form__btns">
       <submit-button
@@ -186,14 +158,6 @@ watch(
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 2rem;
-  }
-
-  &__password-btn {
-    position: absolute;
-    right: 1.14rem;
-    transform: translateY(25%);
-    cursor: pointer;
-    color: darken($text-color-secondary, 10%);
   }
 
   &__btns {

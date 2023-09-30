@@ -1,36 +1,12 @@
 <template>
   <div class="update-password">
     <form class="update-password__form form" @submit.prevent="handleSubmit">
-      <base-input
-        autocomplete="new-password"
-        v-model="v$.password.$model"
-        :errors="v$.password.$errors"
-        size="md"
-        label="password"
-        :type="passwordType"
-      >
-        <show-password-button
-          class="form__password-btn"
-          @click="showPassword"
-          :is-password-visible="isPasswordVisible"
-          :scale="1.3"
-        />
-      </base-input>
-      <base-input
-        autocomplete="new-password"
-        v-model="v$.confirmPassword.$model"
+      <password-input :errors="v$.password.$errors" label="password" v-model="v$.password.$model" />
+      <password-input
         :errors="v$.confirmPassword.$errors"
-        size="md"
         label="confirm password"
-        :type="passwordType"
-      >
-        <show-password-button
-          class="form__password-btn"
-          @click="showPassword"
-          :is-password-visible="isPasswordVisible"
-          :scale="1.3"
-        />
-      </base-input>
+        v-model="v$.confirmPassword.$model"
+      />
       <div class="form__btns">
         <submit-button :loading="isLoading" :name="Buttons.Submit" />
         <reset-button @reset="handleReset" :loading="isLoading" />
@@ -43,8 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import BaseInput from '@/ui/BaseInput/BaseInput.vue';
-import ShowPasswordButton from '@/ui/ShowPasswordButton/ShowPasswordButton.vue';
+import PasswordInput from '@/ui/PasswordInput/PaswordInput.vue';
 import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
 import ResetButton from '@/ui/ResetButton/ResetButton.vue';
 import AppModal from '@/components/AppModal/AppModal.vue';
@@ -53,7 +28,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { sameAs, helpers } from '@vuelidate/validators';
 import { validatePassword } from '@/utils/validatePassword';
 import { customMessages } from '@/constants/form';
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive } from 'vue';
 import { useAppStore } from '@/stores/app';
 import { useUserStore } from '@/stores/user';
 import { TPasswordFormFields } from '@/types/common.types';
@@ -68,8 +43,6 @@ const { showModal } = useAppStore();
 const userStore = useUserStore();
 const { user, isLoading } = storeToRefs(userStore);
 const { updatePassword } = userStore;
-const isPasswordVisible = ref(false);
-const passwordType = computed(() => (isPasswordVisible.value ? 'text' : 'password'));
 const { userPassword, confirmPassword } = customMessages;
 const initialState: TPasswordFormFields = { password: '', confirmPassword: '' };
 const formState: TPasswordFormFields = reactive({ ...initialState });
@@ -109,10 +82,6 @@ const handleConfirm = async (password: string): Promise<void> => {
     }
   }
 };
-
-const showPassword = (): void => {
-  isPasswordVisible.value = !isPasswordVisible.value;
-};
 </script>
 
 <style lang="scss" scoped>
@@ -128,14 +97,6 @@ const showPassword = (): void => {
     display: flex;
     align-self: flex-end;
     gap: 1rem;
-  }
-
-  &__password-btn {
-    position: absolute;
-    right: 1.14rem;
-    transform: translateY(100%);
-    cursor: pointer;
-    color: darken($text-color-secondary, 10%);
   }
 }
 </style>

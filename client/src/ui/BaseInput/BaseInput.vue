@@ -36,66 +36,65 @@ const handleChange = (event: Event) => {
 </script>
 
 <template>
-  <div class="wrapper">
-    <label v-if="label" class="label">{{ props.label }}</label>
+  <div class="base-input">
+    <label v-if="label" class="base-input__label">{{ props.label }}</label>
     <input
       :type="props.type"
-      class="input"
+      class="base-input__input"
       :class="inputClassList"
       :placeholder="props.placeholder"
       @input="handleChange"
       :value="modelValue"
       :autocomplete="autocomplete"
     />
-    <p v-if="errors && errors.length > 0" class="error">
+    <p v-if="errors && errors.length > 0" class="base-input__error">
       <span v-for="{ $message, $uid } in errors" :key="$uid">{{ $message }}</span>
     </p>
-    <slot></slot>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.wrapper {
+<style lang="scss">
+.base-input {
   display: flex;
   flex-direction: column;
-  position: relative;
-}
 
-.label {
-  text-transform: capitalize;
-  margin-bottom: 0.3rem;
-  font-weight: 600;
-}
-.input {
-  outline: none;
-  border-radius: 0.2rem;
-  border-style: solid;
-  border-width: 1px;
-  border-color: $color-secondary;
-  transition: all ease-in-out 0.2s;
-  min-width: 100%;
-  box-sizing: border-box;
-
-  &::placeholder {
-    font-weight: 300;
-    font-style: italic;
+  &__label {
+    text-transform: capitalize;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
   }
 
-  &:focus {
-    border-color: $color-active;
+  &__input {
+    outline: none;
+    border-radius: 0.2rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $color-secondary;
+    transition: all ease-in-out 0.2s;
+    min-width: 100%;
+    box-sizing: border-box;
+
+    &::placeholder {
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    &:focus {
+      border-color: $color-active;
+    }
+
+    @include sizes;
   }
 
-  @include sizes;
-}
-
-.error {
-  font-size: 0.9rem;
-  margin-bottom: 0;
-  margin-top: 0.3rem;
-  padding: 0 0.3rem;
-  color: $text-color-error;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  &__error {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    margin-top: 0.3rem;
+    padding: 0 0.3rem;
+    color: $text-color-error;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
 }
 </style>

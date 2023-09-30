@@ -16,7 +16,7 @@ withDefaults(defineProps<IProps>(), {
   </button>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .icon-btn {
   padding: 0;
   border: none;
