@@ -31,7 +31,10 @@ defineProps<IProps>();
     background: var(--color-paper);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.5s ease;
+    transition:
+      var(--change-theme-transition),
+      opacity 0.5s ease,
+      visibility 0.5s ease;
   }
 
   &:hover &__title {
