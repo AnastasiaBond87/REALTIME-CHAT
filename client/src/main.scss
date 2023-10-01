@@ -21,7 +21,10 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: var(--color-bg);
+  background: var(--background-bottom-left) bottom left / 30%,
+              var(--background-top-right) top right / 20%,
+              var(--color-bg);
+  background-repeat: no-repeat;
   transition: var(--change-theme-transition);
 }
 

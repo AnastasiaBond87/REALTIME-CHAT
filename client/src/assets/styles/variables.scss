@@ -1,4 +1,6 @@
 :root {
+  --background-bottom-left: url('../bg/look-back-cat-light.svg');
+  --background-top-right: url('../bg/doodle-top-right-light.svg');
   --color-white: #ffffff;
   --color-paper: #ffffff;
   --color-paper-medium: #f0f0f0; 
@@ -23,6 +25,8 @@
 }
   
 [data-theme="dark"] {
+  --background-bottom-left: url('../bg/look-back-cat-dark.svg');
+  --background-top-right: url('../bg/doodle-top-right-dark.svg');
   --color-paper: #393b3b;
   --color-bg: #191a1a;
   --text-color-primary: rgba(255, 255, 255, 0.7);

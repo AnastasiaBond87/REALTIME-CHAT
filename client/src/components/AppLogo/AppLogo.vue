@@ -1,12 +1,16 @@
 <template>
   <router-link :to="{ name: 'Home' }" class="logo">
-    <v-icon name="la-cat-solid" scale="1.8" class="logo__icon" />
+    <curios-cat-icon class="logo__icon" />
     <p class="logo__text">
       <span class="logo__text-item logo__text-item_1">Cat</span>
       <span class="logo__text-item logo__text-item_2">Chat</span>
     </p>
   </router-link>
 </template>
+
+<script setup lang="ts">
+import CuriosCatIcon from '@/assets/icons/curious-cat-icon.svg';
+</script>
 
 <style lang="scss" scoped>
 .logo {
@@ -18,6 +22,7 @@
 
   &__icon {
     color: var(--color-primary-light);
+    width: 2.5rem;
   }
 
   &__text {

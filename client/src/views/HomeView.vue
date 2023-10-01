@@ -36,6 +36,7 @@ const switchForm = (): void => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 
   &__container {
     display: flex;
@@ -55,6 +56,7 @@ const switchForm = (): void => {
     width: 500px;
     max-width: 100%;
     transition: var(--change-theme-transition);
+    z-index: 10;
   }
 
   &__footer {
