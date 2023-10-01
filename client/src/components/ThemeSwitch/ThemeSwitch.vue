@@ -1,6 +1,6 @@
 <template>
-  <div class="switch" :class="switchClassList">
-    <icon-button @click="appStore.switchTheme" class="switch__btn" :class="switchClassList">
+  <div class="switch" :class="switchClassList" @click="appStore.switchTheme">
+    <icon-button class="switch__btn" :class="switchClassList">
       <v-icon name="bi-sun-fill" scale="1" v-if="theme === 'light'" />
       <v-icon name="bi-moon-fill" scale="1" v-else />
     </icon-button>
@@ -27,6 +27,7 @@ const switchClassList = computed(() => ({
   height: 30px;
   border-radius: 30px;
   position: relative;
+  cursor: pointer;
 
   &.light {
     background: var(--color-secondary-light);
@@ -46,7 +47,6 @@ const switchClassList = computed(() => ({
     height: 22px;
     width: 22px;
     bottom: 4px;
-    cursor: pointer;
     transition: all 0.3s ease-in-out;
 
     &.light {
