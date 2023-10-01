@@ -32,10 +32,10 @@ const emit = defineEmits<{
   display: flex;
   gap: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid $color-secondary;
+  border-bottom: 1px solid var(--border-color);
 
   &__btn {
-    color: darken($color-secondary, 50%);
+    color: var(--text-color-primary);
     font-size: 1.2rem;
     position: relative;
     transition: all 0.5s;
@@ -47,7 +47,7 @@ const emit = defineEmits<{
       width: 0;
       bottom: -0.5rem;
       height: 1px;
-      background: $color-active;
+      background: var(--color-primary-light);
       transition: all 0.5s;
     }
 
@@ -58,12 +58,12 @@ const emit = defineEmits<{
       width: 0;
       bottom: -0.5rem;
       height: 1px;
-      background: $color-active;
+      background: var(--color-primary-light);
       transition: all 0.5s;
     }
 
     &.active {
-      color: $color-active;
+      color: var(--color-primary-light);
 
       &::after,
       &::before {

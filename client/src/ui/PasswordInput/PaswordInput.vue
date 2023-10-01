@@ -78,7 +78,7 @@ const showPassword = (): void => {
   &__btn {
     position: absolute;
     right: 1.14rem;
-    color: darken($text-color-secondary, 10%);
+    color: var(--text-color-secondary);
     transform: translateY(25%);
   }
 

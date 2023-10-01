@@ -150,7 +150,7 @@ watch(
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: $color-active;
+    color: var(--color-primary-light);
   }
 
   &__content {

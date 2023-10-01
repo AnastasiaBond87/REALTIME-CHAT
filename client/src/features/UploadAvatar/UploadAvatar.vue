@@ -49,9 +49,9 @@ const handleChange = (event: Event) => {
   &__wrapper {
     width: 8rem;
     height: 8rem;
-    background: lighten($color-secondary, 15%);
+    background: var(--color-paper-medium);
     border-radius: 50%;
-    border: 1px solid $color-secondary;
+    border: 1px solid var(--border-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,11 +59,11 @@ const handleChange = (event: Event) => {
   }
 
   &__icon {
-    color: $color-secondary;
+    color: var(--color-secondary-medium);
   }
 
   &__btn {
-    color: $color-primary;
+    color: var(--color-primary);
     position: absolute;
     bottom: 0;
     right: -0.5rem;

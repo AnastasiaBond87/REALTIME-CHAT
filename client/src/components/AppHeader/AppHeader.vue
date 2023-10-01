@@ -46,7 +46,7 @@ const { logout } = userStore;
 }
 .panel {
   &__account {
-    color: $color-secondary;
+    color: var(--color-secondary);
   }
 }
 </style>

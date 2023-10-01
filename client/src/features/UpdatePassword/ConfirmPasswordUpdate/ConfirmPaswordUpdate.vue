@@ -1,8 +1,6 @@
 <template>
   <div class="confirm-pwd-update">
-    <h4 class="confirm-pwd-update__title">
-      To confirm the password change, enter your current password
-    </h4>
+    <h4 class="confirm-pwd-update__title">Enter current password to confirm</h4>
     <form class="confirm-pwd-update__form" @submit.prevent="handleSubmit">
       <password-input
         size="lg"
@@ -54,8 +52,7 @@ const handleSubmit = (): void => {
 
 <style lang="scss" scoped>
 .confirm-pwd-update {
-  background: #ffffff;
-  border-radius: 0.5rem;
+  background: var(--color-paper);
   width: 400px;
   height: 400px;
   max-width: 100%;
@@ -63,18 +60,18 @@ const handleSubmit = (): void => {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3rem;
 
   &__form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
   }
 
   &__title {
     line-height: 1.3;
     font-size: 1.5rem;
-    color: $color-primary;
+    color: var(--color-primary);
   }
 
   &__btn {

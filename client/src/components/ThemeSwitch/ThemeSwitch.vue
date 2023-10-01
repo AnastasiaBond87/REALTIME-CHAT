@@ -26,19 +26,18 @@ const switchClassList = computed(() => ({
   width: 48px;
   height: 30px;
   border-radius: 30px;
-  background: $color-primary;
   position: relative;
 
   &.light {
-    background: $color-secondary;
+    background: var(--color-secondary-light);
   }
 
   &.dark {
-    background: $color-active;
+    background: var(--color-primary-light);
   }
 
   &__btn {
-    background-color: $color-white;
+    background-color: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -25,7 +25,7 @@ withDefaults(defineProps<IProps>(), {
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 600;
-  color: $color-primary;
+  color: var(--color-primary);
   line-height: 1;
 }
 </style>

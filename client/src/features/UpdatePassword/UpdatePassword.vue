@@ -8,7 +8,7 @@
         v-model="v$.confirmPassword.$model"
       />
       <div class="form__btns">
-        <submit-button :loading="isLoading" :name="Buttons.Submit" />
+        <submit-button :loading="isLoading" :name="Buttons.Update" />
         <reset-button @reset="handleReset" :loading="isLoading" />
       </div>
     </form>

@@ -22,17 +22,17 @@ withDefaults(defineProps<IProps>(), {
 
 <style lang="scss" scoped>
 .btn {
-  background: $color-primary;
+  background: var(--color-primary);
   display: flex;
   gap: 0.5rem;
   align-items: flex-end;
 
   &:not(:disabled):hover {
-    background: $color-hover;
+    background: var(--color-primary-medium);
   }
 
   &:not(:disabled):active {
-    background: $color-active;
+    background: var(--color-primary-light);
   }
 }
 </style>

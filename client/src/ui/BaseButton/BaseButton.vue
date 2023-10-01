@@ -35,16 +35,16 @@ const btnClassList = computed(() => ({
   font-weight: 600;
   cursor: pointer;
   transition: all ease-in-out 0.3s;
-  color: $text-color-primary;
+  color: var(--color-white);
 
   &:not(:disabled):hover {
-    box-shadow: $shadow-primary;
+    box-shadow: var(--btn-shadow);
   }
 
   &:disabled {
-    color: $text-color-secondary;
+    color: var(--text-color-secondary);
     background: none;
-    outline: 1px solid $color-secondary;
+    outline: 1px solid var(--border-color);
     cursor: default;
   }
   :slotted(span) {

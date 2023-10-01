@@ -62,6 +62,7 @@ const handleChange = (event: Event) => {
     text-transform: capitalize;
     margin-bottom: 0.3rem;
     font-weight: 600;
+    color: var(--text-color-primary);
   }
 
   &__input {
@@ -69,18 +70,21 @@ const handleChange = (event: Event) => {
     border-radius: 0.2rem;
     border-style: solid;
     border-width: 1px;
-    border-color: $color-secondary;
-    transition: all ease-in-out 0.2s;
+    border-color: var(--border-color);
+    transition: all ease-in-out 0.1s;
     min-width: 100%;
     box-sizing: border-box;
+    background: var(--color-paper);
+    color: var(--text-color-primary);
 
     &::placeholder {
       font-weight: 300;
       font-style: italic;
+      color: var(--text-color-secondary);
     }
 
     &:focus {
-      border-color: $color-active;
+      border-color: var(--border-color-active);
     }
 
     @include sizes;
@@ -91,7 +95,7 @@ const handleChange = (event: Event) => {
     margin-bottom: 0;
     margin-top: 0.3rem;
     padding: 0 0.3rem;
-    color: $text-color-error;
+    color: var(--text-color-error);
     display: flex;
     flex-direction: column;
     gap: 0.2rem;

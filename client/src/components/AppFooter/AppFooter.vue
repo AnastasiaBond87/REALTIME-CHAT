@@ -18,7 +18,8 @@
   }
 
   &__copyright {
-    color: $text-color-secondary;
+    color: var(--text-color-primary);
+    opacity: 0.7;
     margin: 0;
   }
 }

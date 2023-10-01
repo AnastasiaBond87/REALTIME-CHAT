@@ -21,14 +21,14 @@ const emits = defineEmits<{ reset: [] }>();
 
 <style lang="scss" scoped>
 .btn {
-  background: darken($color-secondary, 20%);
+  background: var(--color-secondary);
 
   &:not(:disabled):hover {
-    background: darken($color-secondary, 25%);
+    background: var(--color-secondary-medium);
   }
 
   &:not(:disabled):active {
-    background: darken($color-secondary, 10%);
+    background: var(--color-secondary-light);
   }
 }
 </style>

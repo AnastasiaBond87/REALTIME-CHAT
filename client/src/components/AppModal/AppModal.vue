@@ -28,7 +28,7 @@ const handleClick = () => {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--overlay-color);
   overflow: auto;
 
   &__container {

@@ -6,6 +6,7 @@ enum Buttons {
   Reset = 'Reset',
   Submit = 'Submit',
   Confirm = 'Confirm',
+  Update = 'Update',
 }
 
 const AccountTabs: ITabs[] = [

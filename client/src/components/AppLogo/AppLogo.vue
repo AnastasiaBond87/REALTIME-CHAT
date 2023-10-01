@@ -17,7 +17,7 @@
   gap: 0.2rem;
 
   &__icon {
-    color: $color-active;
+    color: var(--color-primary-light);
   }
 
   &__text {
@@ -29,11 +29,11 @@
     font-weight: 700;
 
     &_1 {
-      color: darken($text-color-secondary, 20%);
+      color: var(--color-secondary);
     }
 
     &_2 {
-      color: $color-active;
+      color: var(--color-primary-light);
     }
   }
 }

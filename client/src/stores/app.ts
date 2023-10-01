@@ -17,10 +17,10 @@ const useAppStore = defineStore('app', {
     switchTheme() {
       if (this.theme === 'dark') {
         this.theme = 'light';
-        localStorage.setItem('GVGT8_THEME', 'light');
+        document.body.removeAttribute('data-theme');
       } else {
         this.theme = 'dark';
-        localStorage.setItem('GVGT8_THEME', 'dark');
+        document.body.setAttribute('data-theme', 'dark');
       }
     },
     showModal(value: boolean) {

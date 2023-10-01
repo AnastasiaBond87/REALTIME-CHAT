@@ -14,7 +14,7 @@ const switchForm = (): void => {
 
 <template>
   <main class="main">
-    <div class="container">
+    <div class="container main__container">
       <div class="main__wrapper">
         <user-login :form-view="formView" />
         <div class="main__footer">
@@ -37,19 +37,30 @@ const switchForm = (): void => {
   flex-direction: column;
   justify-content: center;
 
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
   &__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 4rem;
-    padding: 2rem 0;
+    padding: 2rem;
+    background: var(--color-paper);
+    box-sizing: border-box;
+    box-shadow: var(--box-shadow);
+    width: 500px;
+    max-width: 100%;
   }
 
   &__footer {
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
+    color: var(--text-color-primary);
   }
 }
 </style>
