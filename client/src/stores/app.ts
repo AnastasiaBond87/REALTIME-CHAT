@@ -22,6 +22,11 @@ const useAppStore = defineStore('app', {
         this.theme = 'dark';
         document.body.setAttribute('data-theme', 'dark');
       }
+
+      localStorage.setItem('GVGT8_THEME', this.theme);
+    },
+    setTheme(value: TTheme) {
+      this.theme = value;
     },
     showModal(value: boolean) {
       this.isModalVisible = value;
