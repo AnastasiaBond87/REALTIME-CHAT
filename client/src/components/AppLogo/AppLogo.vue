@@ -16,22 +16,21 @@ import CuriosCatIcon from '@/assets/icons/curious-cat-icon.svg';
 .logo {
   text-decoration: none;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.2rem;
 
   &__icon {
     color: var(--color-primary-light);
-    width: 2.5rem;
+    height: 2.2rem;
   }
 
   &__text {
     margin: 0;
+    font-size: 2.2rem;
   }
 
   &__text-item {
-    text-transform: uppercase;
-    font-weight: 700;
+    font-family: 'Cookie', cursive;
 
     &_1 {
       color: var(--color-secondary);
