@@ -53,6 +53,7 @@ const switchTab = (value: string): void => {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    transition: var(--change-theme-transition);
   }
 }
 </style>

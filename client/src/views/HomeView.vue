@@ -54,6 +54,7 @@ const switchForm = (): void => {
     box-shadow: var(--box-shadow);
     width: 500px;
     max-width: 100%;
+    transition: var(--change-theme-transition);
   }
 
   &__footer {

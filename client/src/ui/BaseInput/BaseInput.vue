@@ -71,11 +71,13 @@ const handleChange = (event: Event) => {
     border-style: solid;
     border-width: 1px;
     border-color: var(--border-color);
-    transition: all ease-in-out 0.1s;
     min-width: 100%;
     box-sizing: border-box;
     background: var(--color-paper);
     color: var(--text-color-primary);
+    transition:
+      var(--change-theme-transition),
+      border 0.3s ease;
 
     &::placeholder {
       font-weight: 300;
