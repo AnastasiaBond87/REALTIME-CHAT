@@ -1,13 +1,16 @@
 <template>
-  <div class="switch" :class="switchClassList" @click="appStore.switchTheme">
-    <icon-button class="switch__btn" :class="switchClassList">
-      <v-icon name="bi-sun-fill" scale="1" v-if="theme === 'light'" />
-      <v-icon name="bi-moon-fill" scale="1" v-else />
-    </icon-button>
-  </div>
+  <base-tooltip title="Change theme">
+    <div class="switch" :class="switchClassList" @click="appStore.switchTheme">
+      <icon-button class="switch__btn" :class="switchClassList">
+        <v-icon name="bi-sun-fill" scale="1" v-if="theme === 'light'" />
+        <v-icon name="bi-moon-fill" scale="1" v-else />
+      </icon-button>
+    </div>
+  </base-tooltip>
 </template>
 
 <script setup lang="ts">
+import BaseTooltip from '@/ui/BaseTooltip/BaseTooltip.vue';
 import { storeToRefs } from 'pinia';
 import { useAppStore } from '@/stores/app';
 import { computed } from 'vue';
