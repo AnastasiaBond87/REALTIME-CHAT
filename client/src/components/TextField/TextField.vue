@@ -43,16 +43,19 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .text-field {
-  margin-top: 200px; //temporary styles
-  max-width: 600px; //temporary styles
+  box-sizing: border-box;
+  min-width: 200px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
   position: relative;
+  outline: 2px solid var(--border-color);
+  outline-offset: -2px;
   padding: 0 1rem;
   border-radius: 0.4rem;
-  background: var(--color-paper);
+  background-color: var(--color-paper);
   transition: var(--change-theme-transition);
 
   &__input {
