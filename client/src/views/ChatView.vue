@@ -8,7 +8,7 @@ import TextField from '@/components/TextField/TextField.vue';
     <div class="container">
       <div class="main__wrapper">
         <!-- <chat-sidebar /> -->
-        <!-- <text-field /> -->
+        <text-field />
       </div>
     </div>
   </main>

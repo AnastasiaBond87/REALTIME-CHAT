@@ -50,6 +50,7 @@ const handleSmileClick = (value: string): void => {
     range.deleteContents();
     const textNode = document.createTextNode(value);
     range.insertNode(textNode);
+    selection.setPosition(textNode, textNode.length);
   }
 };
 
