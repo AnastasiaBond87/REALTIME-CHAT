@@ -27,3 +27,8 @@
     border-color: var(--border-color-active);
   }
 }
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}

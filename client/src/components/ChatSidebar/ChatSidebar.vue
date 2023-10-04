@@ -10,6 +10,8 @@
 
 <style lang="scss">
 .sidebar {
+  background: var(--color-paper-medium);
+
   &__user-list {
     list-style: none;
     margin: 0;
