@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import IconButton from '@/ui/IconButton/IconButton.vue';
 import BaseTooltip from '@/ui/BaseTooltip/BaseTooltip.vue';
 import { storeToRefs } from 'pinia';
 import { useAppStore } from '@/stores/app';
@@ -41,7 +42,6 @@ const switchClassList = computed(() => ({
   }
 
   &__btn {
-    background-color: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,6 +51,7 @@ const switchClassList = computed(() => ({
     width: 22px;
     bottom: 4px;
     transition: all 0.3s ease-in-out;
+    color: var(--text-color-primary);
 
     &.light {
       left: 4px;
