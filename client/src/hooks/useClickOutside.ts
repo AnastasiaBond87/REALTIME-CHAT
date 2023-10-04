@@ -2,15 +2,15 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const useClickOutside = <T extends HTMLElement>() => {
   const isOpen = ref(false);
-  const element = ref<T | null>(null);
+  const targetElement = ref<T | null>(null);
 
   const handleClickOutside = (event: Event): void => {
     const { target } = event;
 
     if (
       target instanceof HTMLElement &&
-      element.value &&
-      !element.value.contains(target) &&
+      targetElement.value &&
+      !targetElement.value.$el.contains(target) &&
       isOpen.value
     ) {
       isOpen.value = false;
@@ -25,7 +25,7 @@ const useClickOutside = <T extends HTMLElement>() => {
     window.removeEventListener('click', handleClickOutside);
   });
 
-  return { isOpen, element };
+  return { isOpen, targetElement };
 };
 
 export { useClickOutside };
