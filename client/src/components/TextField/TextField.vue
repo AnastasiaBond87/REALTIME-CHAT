@@ -3,7 +3,7 @@
     <div
       contenteditable
       class="text-field__input"
-      ref="inputRef"
+      ref="textFieldRef"
       @keypress.enter.prevent
       @blur="setFocused"
     />
@@ -15,12 +15,7 @@
         <v-icon name="md-send-round" :scale="1.5" />
       </icon-button>
     </div>
-    <smiles-list
-      @smile-click="handleSmileClick"
-      ref="targetElement"
-      :open="isOpen"
-      class="text-field__smiles-list"
-    />
+    <smiles-list ref="targetElement" :open="isOpen" class="text-field__smiles-list" />
   </div>
 </template>
 
@@ -30,7 +25,7 @@ import IconButton from '@/ui/IconButton/IconButton.vue';
 import SmilesList from '@/components/TextField/SmilesList/SmilesList.vue';
 import { onMounted, ref } from 'vue';
 
-const inputRef = ref<HTMLTextAreaElement | null>(null);
+const textFieldRef = ref<HTMLTextAreaElement | null>(null);
 const { isOpen, targetElement } = useClickOutside<HTMLDivElement>();
 
 const showSmiles = (): void => {
@@ -38,20 +33,7 @@ const showSmiles = (): void => {
 };
 
 const setFocused = (): void => {
-  inputRef.value?.focus();
-};
-
-const handleSmileClick = (value: string): void => {
-  const selection = document.getSelection();
-
-  if (selection) {
-    const range = selection.getRangeAt(0);
-    selection.removeAllRanges();
-    range.deleteContents();
-    const textNode = document.createTextNode(value);
-    range.insertNode(textNode);
-    selection.setPosition(textNode, textNode.length);
-  }
+  textFieldRef.value?.focus();
 };
 
 onMounted(() => {

@@ -6,7 +6,7 @@
           v-for="{ id, icon } in smiles"
           :key="id"
           class="smiles__item"
-          @click="emits('smileClick', icon)"
+          @click="() => handleItemClick(icon)"
         >
           <span>{{ icon }}</span>
         </li>
@@ -24,7 +24,18 @@ interface IProps {
 
 defineProps<IProps>();
 
-const emits = defineEmits<{ smileClick: [value: string] }>();
+const handleItemClick = (value: string): void => {
+  const selection = document.getSelection();
+
+  if (selection) {
+    const range = selection.getRangeAt(0);
+    selection.removeAllRanges();
+    range.deleteContents();
+    const textNode = document.createTextNode(value);
+    range.insertNode(textNode);
+    selection.setPosition(textNode, textNode.length);
+  }
+};
 </script>
 
 <style lang="scss">
