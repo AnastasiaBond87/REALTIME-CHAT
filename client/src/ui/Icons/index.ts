@@ -13,6 +13,7 @@ import {
   FaSpinner,
   MdSendRound,
   FaRegularSmile,
+  LaUsersSolid,
 } from 'oh-vue-icons/icons';
 
 export default [
@@ -30,4 +31,5 @@ export default [
   FaSpinner,
   MdSendRound,
   FaRegularSmile,
+  LaUsersSolid,
 ];
