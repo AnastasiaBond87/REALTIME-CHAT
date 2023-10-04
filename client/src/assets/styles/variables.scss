@@ -2,6 +2,8 @@
   --background-bottom-left: url('../bg/look-back-cat-light.svg');
   --background-top-right: url('../bg/doodle-top-right-light.svg');
   --color-white: #ffffff;
+  --color-black: #000000;
+  --color-black-transparent: rgba(0, 0, 0, 0.3);
   --color-paper: #ffffff;
   --color-paper-medium: #f0f0f0; 
   --color-bg: #fafafa;
@@ -33,3 +35,5 @@
   --text-color-secondary: #b0bac9;
   --border-color: #515459;
 }
+
+$md: 1024px;

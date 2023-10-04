@@ -11,6 +11,8 @@ import {
   BiSunFill,
   FaCloudUploadAlt,
   FaSpinner,
+  MdSendRound,
+  FaRegularSmile,
 } from 'oh-vue-icons/icons';
 
 export default [
@@ -26,4 +28,6 @@ export default [
   BiSunFill,
   FaCloudUploadAlt,
   FaSpinner,
+  MdSendRound,
+  FaRegularSmile,
 ];

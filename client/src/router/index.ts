@@ -31,16 +31,16 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, _, next) => {
-  const auth = useUserStore();
+// router.beforeEach((to, _, next) => {
+//   const auth = useUserStore();
 
-  if (!auth.isAuth && to.path === '/chat') {
-    next({ name: 'Home' });
-  } else if (auth.isAuth && to.path === '/') {
-    next({ name: 'Chat' });
-  } else {
-    next();
-  }
-});
+//   if (!auth.isAuth && to.path === '/chat') {
+//     next({ name: 'Home' });
+//   } else if (auth.isAuth && to.path === '/') {
+//     next({ name: 'Chat' });
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;

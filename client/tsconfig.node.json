@@ -8,11 +8,14 @@
     "playwright.config.*",
     "./src/**/*.ts",
     "./src/**/*.vue", 
-    "src/vue.d.tsd.ts" ],
+    "src/vue.d.tsd.ts",
+    "src/**/*.json"
+   ],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "allowJs": false,
     "noImplicitAny": true,
     "types": ["node"],

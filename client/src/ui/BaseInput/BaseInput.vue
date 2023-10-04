@@ -66,11 +66,9 @@ const handleChange = (event: Event) => {
   }
 
   &__input {
+    @include input-border;
     outline: none;
     border-radius: 0.2rem;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--border-color);
     min-width: 100%;
     box-sizing: border-box;
     background: var(--color-paper);
@@ -83,10 +81,6 @@ const handleChange = (event: Event) => {
       font-weight: 300;
       font-style: italic;
       color: var(--text-color-secondary);
-    }
-
-    &:focus {
-      border-color: var(--border-color-active);
     }
 
     @include sizes;
