@@ -24,20 +24,20 @@
 </template>
 
 <script setup lang="ts">
-import BaseInput from '@/ui/BaseInput/BaseInput.vue';
-import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
-import ResetButton from '@/ui/ResetButton/ResetButton.vue';
-import { customMessages } from '@/constants/form';
+import BaseInput from '@/shared/ui/BaseInput/BaseInput.vue';
+import SubmitButton from '@/shared/ui/SubmitButton/SubmitButton.vue';
+import ResetButton from '@/shared/ui/ResetButton/ResetButton.vue';
+import { customMessages } from '@/shared/constants/form';
 import { useVuelidate } from '@vuelidate/core';
 import { email, minLength, helpers, maxLength } from '@vuelidate/validators';
 import { ComputedRef, computed, reactive } from 'vue';
 import { useUserStore } from '@/stores/user';
-import { TProfileFormFields } from '@/types/common.types';
-import { resetFormState } from '@/utils/resetFormState';
+import { TProfileFormFields } from '@/shared/types/common.types';
+import { resetFormState } from '@/shared/utils/resetFormState';
 import { storeToRefs } from 'pinia';
 import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
-import { Buttons } from '@/constants/common';
+import { Buttons } from '@/shared/constants/common';
 
 const $toast = useToast();
 const userStore = useUserStore();

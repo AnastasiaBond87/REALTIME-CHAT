@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
-import ResetButton from '@/ui/ResetButton/ResetButton.vue';
-import BaseInput from '@/ui/BaseInput/BaseInput.vue';
-import PasswordInput from '@/ui/PasswordInput/PaswordInput.vue';
+import SubmitButton from '@/shared/ui/SubmitButton/SubmitButton.vue';
+import ResetButton from '@/shared/ui/ResetButton/ResetButton.vue';
+import BaseInput from '@/shared/ui/BaseInput/BaseInput.vue';
+import PasswordInput from '@/shared/ui/PasswordInput/PaswordInput.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, minLength, sameAs, helpers, maxLength } from '@vuelidate/validators';
 import { reactive, computed, watch } from 'vue';
-import { type TFormView, IFormFields } from '@/types/common.types';
-import { Buttons } from '@/constants/common';
-import { initialState, customMessages } from '@/constants/form';
+import { type TFormView, IFormFields } from '@/shared/types/common.types';
+import { Buttons } from '@/shared/constants/common';
+import { initialState, customMessages } from '@/shared/constants/form';
 import { useUserStore } from '@/stores/user';
-import { validatePassword } from '@/utils/validatePassword';
-import { resetFormState } from '@/utils/resetFormState';
+import { validatePassword } from '@/shared/utils/validatePassword';
+import { resetFormState } from '@/shared/utils/resetFormState';
 import { storeToRefs } from 'pinia';
 
 interface IProps {

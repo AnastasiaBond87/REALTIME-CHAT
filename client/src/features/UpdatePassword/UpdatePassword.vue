@@ -19,24 +19,24 @@
 </template>
 
 <script setup lang="ts">
-import PasswordInput from '@/ui/PasswordInput/PaswordInput.vue';
-import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
-import ResetButton from '@/ui/ResetButton/ResetButton.vue';
+import PasswordInput from '@/shared/ui/PasswordInput/PaswordInput.vue';
+import SubmitButton from '@/shared/ui/SubmitButton/SubmitButton.vue';
+import ResetButton from '@/shared/ui/ResetButton/ResetButton.vue';
 import AppModal from '@/components/AppModal/AppModal.vue';
 import ConfirmPaswordUpdate from '@/features/UpdatePassword/ConfirmPasswordUpdate/ConfirmPaswordUpdate.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { sameAs, helpers } from '@vuelidate/validators';
-import { validatePassword } from '@/utils/validatePassword';
-import { customMessages } from '@/constants/form';
+import { validatePassword } from '@/shared/utils/validatePassword';
+import { customMessages } from '@/shared/constants/form';
 import { computed, reactive } from 'vue';
 import { useAppStore } from '@/stores/app';
 import { useUserStore } from '@/stores/user';
-import { TPasswordFormFields } from '@/types/common.types';
-import { resetFormState } from '../../utils/resetFormState';
+import { TPasswordFormFields } from '@/shared/types/common.types';
+import { resetFormState } from '@/shared/utils/resetFormState';
 import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import { storeToRefs } from 'pinia';
-import { Buttons } from '@/constants/common';
+import { Buttons } from '@/shared/constants/common';
 
 const $toast = useToast();
 const { showModal } = useAppStore();

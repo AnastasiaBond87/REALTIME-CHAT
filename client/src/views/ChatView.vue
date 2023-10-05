@@ -25,7 +25,6 @@ import ChatContent from '@/components/ChatContent/ChatContent.vue';
   }
 
   &__wrapper {
-    background: var(--color-paper);
     flex: 1;
     box-shadow: var(--box-shadow);
     display: flex;

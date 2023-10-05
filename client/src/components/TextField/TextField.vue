@@ -20,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { useClickOutside } from '@/hooks/useClickOutside';
-import IconButton from '@/ui/IconButton/IconButton.vue';
+import { useClickOutside } from '@/shared/hooks/useClickOutside';
+import IconButton from '@/shared/ui/IconButton/IconButton.vue';
 import SmilesList from '@/components/TextField/SmilesList/SmilesList.vue';
 import { onMounted, ref } from 'vue';
 
@@ -51,7 +51,7 @@ onMounted(() => {
   justify-content: space-between;
   gap: 2rem;
   position: relative;
-  outline: 2px solid var(--border-color);
+  outline: 2px solid var(--color-primary-light);
   outline-offset: -2px;
   padding: 0 1rem;
   border-radius: 0.4rem;
@@ -75,9 +75,11 @@ onMounted(() => {
   }
 
   &__btn {
-    &_send {
-      color: var(--color-primary);
-    }
+    color: var(--color-secondary);
+
+    // &_send {
+    //   color: var(--color-primary);
+    // }
 
     &_smile {
       color: var(--color-secondary);

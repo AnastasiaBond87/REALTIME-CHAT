@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '@/constants/url';
+import { BASE_URL } from '@/shared/constants/url';
 import { useUserStore } from '@/stores/user';
 
 const axiosInstance = axios.create({

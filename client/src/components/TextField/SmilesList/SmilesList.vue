@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import smiles from '@/data/smiles.json';
+import smiles from '@/shared/data/smiles.json';
 
 interface IProps {
   open: boolean;
@@ -45,7 +45,7 @@ const handleItemClick = (value: string): void => {
   padding: 1rem 0;
   display: flex;
   align-items: flex-start;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-primary-light);
   border-radius: 0.5rem;
   position: relative;
 
@@ -56,7 +56,7 @@ const handleItemClick = (value: string): void => {
     right: 50%;
     transform: translate(50%, 100%);
     border: 10px solid transparent;
-    border-top: 10px solid var(--border-color);
+    border-top: 10px solid var(--color-primary-light);
   }
 
   &__list {

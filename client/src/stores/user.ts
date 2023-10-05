@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import type { IErrorResponse, IUserResponse } from '@/types/api.types';
-import UserApi from '@/api/UserApi';
+import type { IErrorResponse, IUserResponse } from '@/shared/types/api.types';
+import UserApi from '@/shared/api/UserApi';
 import type { AxiosError } from 'axios';
 import router from '@/router';
 

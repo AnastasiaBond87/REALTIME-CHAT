@@ -14,14 +14,14 @@
 </template>
 
 <script setup lang="ts">
-import PasswordInput from '@/ui/PasswordInput/PaswordInput.vue';
-import SubmitButton from '@/ui/SubmitButton/SubmitButton.vue';
+import PasswordInput from '@/shared/ui/PasswordInput/PaswordInput.vue';
+import SubmitButton from '@/shared/ui/SubmitButton/SubmitButton.vue';
 import { computed, reactive } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
-import { Buttons } from '@/constants/common';
-import { IFormFields } from '@/types/common.types';
+import { Buttons } from '@/shared/constants/common';
+import { IFormFields } from '@/shared/types/common.types';
 import { helpers, required } from '@vuelidate/validators';
-import { customMessages } from '@/constants/form';
+import { customMessages } from '@/shared/constants/form';
 
 const emits = defineEmits<{ submit: [value: string] }>();
 const { userPassword } = customMessages;

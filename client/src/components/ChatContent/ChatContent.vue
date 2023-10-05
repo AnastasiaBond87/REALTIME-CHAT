@@ -23,6 +23,8 @@ import TextField from '@/components/TextField/TextField.vue';
 <style lang="scss" scoped>
 .chat-content {
   @include flex-col;
+  overflow: hidden;
+  background: var(--color-paper);
 
   &__header {
     flex: 0;
@@ -35,7 +37,7 @@ import TextField from '@/components/TextField/TextField.vue';
 
   &__footer {
     flex: 0;
-    border-top: 1px solid var(--border-color);
+    box-shadow: -2px -7px 13px -3px rgba(0, 0, 0, 0.1);
   }
 }
 

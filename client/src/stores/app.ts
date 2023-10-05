@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { TTheme } from '@/types/common.types';
+import type { TTheme } from '@/shared/types/common.types';
 
 interface State {
   theme: TTheme;

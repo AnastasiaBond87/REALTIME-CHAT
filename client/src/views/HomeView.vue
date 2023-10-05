@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import UserLogin from '@/features/UserLogin/UserLogin.vue';
-import TextButton from '@/ui/TextButton/TextButton.vue';
-import { type TFormView } from '@/types/common.types';
-import { Buttons } from '@/constants/common';
+import TextButton from '@/shared/ui/TextButton/TextButton.vue';
+import { type TFormView } from '@/shared/types/common.types';
+import { Buttons } from '@/shared/constants/common';
 import { ref } from 'vue';
 
 const formView = ref<TFormView>('SignIn');

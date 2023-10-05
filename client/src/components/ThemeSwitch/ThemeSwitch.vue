@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import IconButton from '@/ui/IconButton/IconButton.vue';
-import BaseTooltip from '@/ui/BaseTooltip/BaseTooltip.vue';
+import IconButton from '@/shared/ui/IconButton/IconButton.vue';
+import BaseTooltip from '@/shared/ui/BaseTooltip/BaseTooltip.vue';
 import { storeToRefs } from 'pinia';
 import { useAppStore } from '@/stores/app';
 import { computed } from 'vue';

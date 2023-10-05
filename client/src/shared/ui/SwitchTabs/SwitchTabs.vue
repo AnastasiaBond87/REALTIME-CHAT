@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import TextButton from '@/ui/TextButton/TextButton.vue';
-import { ITabs } from '@/types/common.types';
+import TextButton from '@/shared/ui/TextButton/TextButton.vue';
+import { ITabs } from '@/shared/types/common.types';
 
 interface IProps {
   tabs: ITabs[];

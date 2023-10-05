@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ButtonHTMLAttributes, computed } from 'vue';
-import type { TSize } from '@/types/common.types';
+import type { TSize } from '@/shared/types/common.types';
 
 interface IProps {
   type?: ButtonHTMLAttributes['type'];

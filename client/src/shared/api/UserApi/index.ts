@@ -1,6 +1,6 @@
-import { Endpoints } from '@/constants/url';
-import type { IUserResponse, IDeleteResponse } from '@/types/api.types';
-import axiosInstance from '@/api/instance';
+import { Endpoints } from '@/shared/constants/url';
+import type { IUserResponse, IDeleteResponse } from '@/shared/types/api.types';
+import axiosInstance from '@/shared/api/instance';
 
 class UserApi {
   static registration = (name: string, email: string, password: string): Promise<IUserResponse> =>

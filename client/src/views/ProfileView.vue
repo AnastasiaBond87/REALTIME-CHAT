@@ -17,11 +17,11 @@
 
 <script setup lang="ts">
 import UploadAvatar from '@/features/UploadAvatar/UploadAvatar.vue';
-import SwitchTabs from '@/ui/SwitchTabs/SwitchTabs.vue';
+import SwitchTabs from '@/shared/ui/SwitchTabs/SwitchTabs.vue';
 import UpdateProfile from '@/features/UpdateProfile/UpdateProfile.vue';
 import UpdatePassword from '@/features/UpdatePassword/UpdatePassword.vue';
 import { ref } from 'vue';
-import { AccountTabs } from '@/constants/common';
+import { AccountTabs } from '@/shared/constants/common';
 
 const activeTab = ref<string>('user-info');
 

@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import BaseButton from '@/ui/BaseButton/BaseButton.vue';
-import { Buttons } from '@/constants/common';
+import BaseButton from '@/shared/ui/BaseButton/BaseButton.vue';
+import { Buttons } from '@/shared/constants/common';
 
 interface IProps {
   loading?: boolean;

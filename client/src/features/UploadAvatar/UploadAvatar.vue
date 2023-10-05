@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import UserAvatar from '@/components/UserAvatar/UserAvatar.vue';
-import IconButton from '@/ui/IconButton/IconButton.vue';
+import IconButton from '@/shared/ui/IconButton/IconButton.vue';
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';

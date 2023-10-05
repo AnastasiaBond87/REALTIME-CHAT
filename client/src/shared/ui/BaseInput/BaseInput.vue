@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { InputHTMLAttributes, computed } from 'vue';
 import type { ErrorObject } from '@vuelidate/core';
-import type { TSize } from '@/types/common.types';
+import type { TSize } from '@/shared/types/common.types';
 
 interface IProps {
   type?: InputHTMLAttributes['type'];

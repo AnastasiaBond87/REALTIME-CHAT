@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import IconButton from '@/ui/IconButton/IconButton.vue';
+import IconButton from '@/shared/ui/IconButton/IconButton.vue';
 import type { ErrorObject } from '@vuelidate/core';
-import type { TSize } from '@/types/common.types';
+import type { TSize } from '@/shared/types/common.types';
 import { computed, ref } from 'vue';
 
 interface IProps {
