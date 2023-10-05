@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url';
 import svgLoader from 'vite-svg-loader';
+import autoprefixer from 'autoprefixer';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -25,6 +26,9 @@ export default defineConfig({
           @import "@/assets/styles/mixins.scss";
         `,
       },
+    },
+    postcss: {
+      plugins: [autoprefixer({})],
     },
   },
 });

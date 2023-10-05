@@ -1,4 +1,4 @@
-import type { IUser } from '@/types/common.types';
+import type { IUser } from '@/shared/types/common.types';
 
 interface IErrorResponse {
   error: boolean;
